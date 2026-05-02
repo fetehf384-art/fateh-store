@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سوق فاتح الذكي | Fateh Smart Market</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#D4A017; --gold2:#F5C842;
+  --dark:#07080F; --card:#0F1020;
+  --card2:#161830; --accent:#1C1F3A;
+  --text:#F2EFE8; --muted:#7A7A9A;
+  --green:#00C896; --red:#FF4757; --blue:#4A90E2;
+  --border:rgba(212,160,23,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;min-height:100vh}
+
+/* ANIMATED BG */
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 120% 80% at 80% -10%,rgba(212,160,23,0.07) 0%,transparent 60%),
+             radial-gradient(ellipse 80% 60% at -10% 80%,rgba(74,144,226,0.05) 0%,transparent 60%);
+  pointer-events:none;z-index:0}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:200;
+  background:rgba(7,8,15,0.88);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;height:65px;gap:1rem}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.logo-text{font-size:1.1rem;font-weight:900;
+  background:linear-gradient(135deg,var(--gold),#fff 60%,var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.header-right{display:flex;align-items:center;gap:10px}
+.lang-toggle{display:flex;gap:4px;background:var(--accent);border-radius:25px;padding:3px}
+.lang-btn{padding:4px 12px;border-radius:20px;border:none;cursor:pointer;
+  font-family:'Cairo',sans-serif;font-size:0.78rem;font-weight:700;
+  background:transparent;color:var(--muted);transition:all .3s}
+.lang-btn.active{background:var(--gold);color:#000}
+.cart-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;
+  border-radius:25px;padding:8px 16px;font-family:'Cairo',sans-serif;font-weight:800;
+  cursor:pointer;font-size:0.85rem;display:flex;align-items:center;gap:6px;transition:transform .2s;white-space:nowrap}
+.cart-btn:hover{transform:scale(1.05)}
+.cart-count{background:#000;color:var(--gold);border-radius:50%;
+  width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:900}
+
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:4rem 1.5rem 3rem;
+  background:radial-gradient(ellipse 100% 70% at 50% 0%,rgba(212,160,23,0.1) 0%,transparent 70%)}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.badge{display:inline-flex;align-items:center;gap:5px;
+  background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.25);
+  color:var(--gold);padding:5px 14px;border-radius:25px;font-size:0.75rem;font-weight:700}
+.badge.green{background:rgba(0,200,150,0.08);border-color:rgba(0,200,150,0.25);color:var(--green)}
+.badge.blue{background:rgba(74,144,226,0.08);border-color:rgba(74,144,226,0.25);color:var(--blue)}
+.hero h1{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;line-height:1.2;margin-bottom:1rem}
+.hero h1 .highlight{background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto 2rem;line-height:1.8}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.stat{text-align:center}
+.stat-num{font-size:1.5rem;font-weight:900;color:var(--gold)}
+.stat-label{font-size:0.75rem;color:var(--muted)}
+
+/* SEARCH */
+.search-wrap{max-width:580px;margin:0 auto}
+.search-bar{display:flex;gap:8px;background:var(--card2);
+  border:1px solid var(--border);border-radius:50px;
+  padding:6px 6px 6px 18px;transition:border-color .3s}
+.search-bar:focus-within{border-color:rgba(212,160,23,0.5)}
+.search-bar input{flex:1;background:transparent;border:none;outline:none;
+  font-family:'Cairo',sans-serif;font-size:0.95rem;color:var(--text)}
+.search-bar input::placeholder{color:var(--muted)}
+.search-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;
+  border-radius:40px;padding:9px 22px;font-family:'Cairo',sans-serif;
+  font-weight:700;cursor:pointer;font-size:0.9rem;transition:transform .2s}
+.search-btn:hover{transform:scale(1.04)}
+
+/* SECTION */
+.section{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:1.5rem 1.2rem}
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.sec-title{font-size:1.2rem;font-weight:800;display:flex;align-items:center;gap:8px}
+.sec-line{flex:1;height:1px;background:var(--border);margin-right:1rem}
+.see-all{color:var(--gold);font-size:0.8rem;font-weight:700;cursor:pointer;
+  background:none;border:none;font-family:'Cairo',sans-serif;white-space:nowrap}
+
+/* CATEGORIES */
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{white-space:nowrap;padding:7px 18px;border-radius:25px;
+  border:1px solid var(--border);background:var(--card);
+  color:var(--text);cursor:pointer;font-family:'Cairo',sans-serif;
+  font-size:0.85rem;font-weight:600;transition:all .3s}
+.cat:hover,.cat.active{background:var(--gold);color:#000;border-color:var(--gold)}
+
+/* PRODUCTS */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.product-card{background:var(--card);border:1px solid rgba(255,255,255,0.05);
+  border-radius:18px;overflow:hidden;transition:transform .3s,border-color .3s;
+  cursor:pointer;position:relative;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-5px);border-color:var(--border)}
+.product-img{width:100%;height:170px;display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;background:linear-gradient(135deg,var(--card2),var(--accent));
+  position:relative;overflow:hidden}
+.product-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,0.3))}
+.badge-abs{position:absolute;top:10px;right:10px;z-index:1;
+  background:var(--red);color:#fff;font-size:0.68rem;font-weight:800;
+  padding:3px 9px;border-radius:20px}
+.badge-abs.commission{background:var(--green);color:#000}
+.product-body{padding:0.9rem;flex:1;display:flex;flex-direction:column;gap:6px}
+.product-name{font-weight:700;font-size:0.92rem;line-height:1.4}
+.product-desc{color:var(--muted);font-size:0.75rem;line-height:1.5;flex:1}
+.product-meta{display:flex;align-items:center;gap:6px}
+.stars{color:var(--gold);font-size:0.72rem}
+.reviews{color:var(--muted);font-size:0.7rem}
+.product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.prices{display:flex;flex-direction:column}
+.price-old{font-size:0.72rem;color:var(--muted);text-decoration:line-through}
+.price-new{font-size:1.1rem;font-weight:900;color:var(--gold)}
+.commission-badge{font-size:0.68rem;color:var(--green);font-weight:700}
+.add-btn{background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.3);
+  color:var(--gold);border-radius:25px;padding:6px 14px;
+  font-family:'Cairo',sans-serif;font-size:0.8rem;font-weight:700;
+  cursor:pointer;transition:all .3s;white-space:nowrap}
+.add-btn:hover{background:var(--gold);color:#000}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.how-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:1.4rem;text-align:center;position:relative}
+.how-num{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1rem;margin:0 auto 0.8rem}
+.how-icon{font-size:2rem;margin-bottom:0.5rem}
+.how-title{font-weight:700;font-size:0.92rem;margin-bottom:4px}
+.how-desc{color:var(--muted);font-size:0.75rem;line-height:1.6}
+
+/* COMMISSION MODEL */
+.commission-box{background:linear-gradient(135deg,rgba(0,200,150,0.08),rgba(74,144,226,0.08));
+  border:1px solid rgba(0,200,150,0.2);border-radius:20px;padding:1.5rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.2rem}
+.commission-info h3{font-size:1.1rem;font-weight:800;color:var(--green);margin-bottom:6px}
+.commission-info p{color:var(--muted);font-size:0.82rem;line-height:1.6}
+.commission-stats{display:flex;gap:1.5rem;flex-wrap:wrap}
+.com-stat{text-align:center}
+.com-num{font-size:1.6rem;font-weight:900;color:var(--green)}
+.com-label{font-size:0.72rem;color:var(--muted)}
+
+/* PAYMENT */
+.payment-box{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.pay-methods{display:flex;gap:8px;flex-wrap:wrap}
+.pay-badge{background:var(--accent);border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px;padding:7px 13px;font-size:0.78rem;font-weight:600;
+  display:flex;align-items:center;gap:5px}
+
+/* FREE TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.9rem}
+.tool-card{background:var(--card);border:1px solid rgba(255,255,255,0.05);
+  border-radius:14px;padding:1.1rem;transition:border-color .3s}
+.tool-card:hover{border-color:var(--border)}
+.tool-icon{font-size:1.8rem;margin-bottom:0.5rem}
+.tool-name{font-weight:700;font-size:0.88rem;margin-bottom:3px}
+.tool-desc{color:var(--muted);font-size:0.73rem;line-height:1.5}
+.free-tag{display:inline-block;margin-top:6px;
+  background:rgba(0,200,150,0.1);color:var(--green);
+  border:1px solid rgba(0,200,150,0.25);border-radius:20px;
+  padding:2px 9px;font-size:0.68rem;font-weight:700}
+
+/* SERVERS */
+.servers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.server-card{background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.2rem;transition:border-color .3s}
+.server-card:hover{border-color:rgba(74,144,226,0.4)}
+.server-header{display:flex;align-items:center;gap:10px;margin-bottom:0.8rem}
+.server-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-size:1.2rem;background:rgba(74,144,226,0.1)}
+.server-name{font-weight:700;font-size:0.95rem}
+.server-url{font-size:0.72rem;color:var(--gold)}
+.server-features{display:flex;flex-direction:column;gap:4px}
+.server-feat{font-size:0.75rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.server-feat::before{content:'✓';color:var(--green);font-weight:700}
+.server-btn{margin-top:10px;width:100%;padding:8px;border:1px solid var(--border);
+  background:transparent;color:var(--text);border-radius:10px;
+  font-family:'Cairo',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all .3s}
+.server-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+
+/* SOCIAL */
+.social-grid{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.social-btn{background:var(--card);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:10px 18px;font-size:0.82rem;color:var(--text);
+  text-decoration:none;display:flex;align-items:center;gap:7px;
+  transition:all .3s;font-weight:600}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* CART */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);
+  z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-panel{position:fixed;top:0;right:-400px;width:380px;height:100vh;
+  background:var(--card);border-left:1px solid var(--border);
+  z-index:301;transition:right .4s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column}
+.cart-panel.open{right:0}
+.cart-head{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between}
+.cart-head h2{font-size:1.1rem;font-weight:800}
+.close-btn{background:var(--accent);border:none;color:var(--muted);
+  width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:color .2s}
+.close-btn:hover{color:var(--text)}
+.cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty-state{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;height:100%;gap:0.8rem;color:var(--muted)}
+.cart-empty-state span:first-child{font-size:3.5rem}
+.cart-item{display:flex;align-items:center;gap:10px;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.ci-emoji{font-size:2.2rem;flex-shrink:0}
+.ci-info{flex:1}
+.ci-name{font-weight:600;font-size:0.88rem}
+.ci-price{color:var(--gold);font-size:0.82rem;font-weight:700}
+.ci-commission{color:var(--green);font-size:0.72rem}
+.ci-remove{background:none;border:none;color:var(--red);cursor:pointer;font-size:1rem;padding:4px}
+.cart-foot{padding:1.2rem 1.5rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px}
+.cart-total{font-weight:800;font-size:1rem;display:flex;justify-content:space-between}
+.cart-commission{font-size:0.82rem;color:var(--green);display:flex;justify-content:space-between}
+.checkout-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;
+  border:none;border-radius:14px;padding:14px;width:100%;
+  font-family:'Cairo',sans-serif;font-size:1rem;font-weight:800;
+  cursor:pointer;transition:transform .2s}
+.checkout-btn:hover{transform:scale(1.02)}
+
+/* CHATBOT */
+.chat-fab{position:fixed;bottom:24px;left:24px;width:56px;height:56px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border-radius:50%;border:none;cursor:pointer;font-size:1.4rem;
+  z-index:400;box-shadow:0 6px 24px rgba(212,160,23,0.4);
+  transition:transform .3s;display:flex;align-items:center;justify-content:center}
+.chat-fab:hover{transform:scale(1.1)}
+.chat-win{position:fixed;bottom:88px;left:24px;width:330px;height:450px;
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  z-index:399;display:none;flex-direction:column;overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,0.6)}
+.chat-win.open{display:flex}
+.chat-head{background:linear-gradient(135deg,var(--accent),#0d1030);
+  padding:12px 14px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px}
+.chat-av{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.chat-name-text{font-weight:700;font-size:0.88rem}
+.chat-online{font-size:0.68rem;color:var(--green)}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;
+  scrollbar-width:thin;scrollbar-color:var(--accent) transparent}
+.msg{max-width:82%;padding:8px 12px;border-radius:14px;font-size:0.82rem;line-height:1.55;animation:msgIn .3s}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg.bot{background:var(--accent);border-bottom-right-radius:3px;align-self:flex-start}
+.msg.user{background:rgba(212,160,23,0.18);border:1px solid rgba(212,160,23,0.25);
+  border-bottom-left-radius:3px;align-self:flex-end;text-align:right}
+.quick-qs{display:flex;gap:5px;flex-wrap:wrap;padding:0 12px 8px}
+.quick-q{background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.2);
+  color:var(--gold);border-radius:20px;padding:4px 10px;font-size:0.7rem;
+  cursor:pointer;font-family:'Cairo',sans-serif;transition:all .2s}
+.quick-q:hover{background:rgba(212,160,23,0.2)}
+.chat-input-row{padding:8px;border-top:1px solid rgba(255,255,255,0.05);display:flex;gap:7px}
+.chat-inp{flex:1;background:var(--accent);border:1px solid rgba(255,255,255,0.06);
+  border-radius:22px;padding:8px 14px;font-family:'Cairo',sans-serif;
+  font-size:0.82rem;color:var(--text);outline:none}
+.chat-inp::placeholder{color:var(--muted)}
+.chat-send{background:var(--gold);color:#000;border:none;border-radius:50%;
+  width:36px;height:36px;cursor:pointer;font-size:0.95rem;
+  transition:transform .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.chat-send:hover{transform:scale(1.1)}
+.typing{display:flex;gap:4px;padding:8px 12px;align-items:center}
+.typing span{width:7px;height:7px;background:var(--muted);border-radius:50%;animation:bounce 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-7px)}}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;padding:10px 20px;border-radius:30px;
+  font-weight:700;font-size:0.88rem;z-index:500;
+  transform:translateY(80px);opacity:0;transition:all .4s;pointer-events:none}
+.toast.success{background:var(--green);color:#000}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* FOOTER */
+footer{position:relative;z-index:1;text-align:center;padding:2rem 1.5rem;
+  color:var(--muted);font-size:0.78rem;
+  border-top:1px solid rgba(255,255,255,0.04);margin-top:2rem}
+footer p+p{margin-top:6px}
+
+@media(max-width:600px){
+  .cart-panel{width:100vw;right:-100vw}
+  .chat-win{width:calc(100vw - 48px)}
+  .commission-box{flex-direction:column}
+  .payment-box{flex-direction:column}
+  .hero-stats{gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <div class="logo-icon">🛒</div>
+    <span class="logo-text" id="logoText">سوق فاتح الذكي</span>
+  </a>
+  <div class="header-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('ar')">عربي</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      🛍️ <div class="cart-count" id="cartCount">0</div>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badges">
+    <span class="badge">🤖 ذكاء اصطناعي</span>
+    <span class="badge green">✅ مجاني 100%</span>
+    <span class="badge blue">🌍 شحن عالمي</span>
+    <span class="badge">💰 عمولة فقط</span>
+  </div>
+  <h1 id="heroTitle">تسوّق من كل العالم<br><span class="highlight">بدون دينار واحد!</span></h1>
+  <p id="heroDesc">متجر ذكي بنموذج Dropshipping — السلع مجانية، تدفع فقط عند البيع، وتأخذ عمولتك فوراً 💰</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">+50K</div><div class="stat-label" id="statProd">منتج</div></div>
+    <div class="stat"><div class="stat-num">+150</div><div class="stat-label" id="statCountry">دولة</div></div>
+    <div class="stat"><div class="stat-num">%0</div><div class="stat-label" id="statCost">تكلفة</div></div>
+    <div class="stat"><div class="stat-num">%30</div><div class="stat-label" id="statComm">عمولة</div></div>
+  </div>
+  <div class="search-wrap">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍 ابحث عن أي منتج في العالم..." oninput="renderProducts()">
+      <button class="search-btn" id="searchBtn">بحث</button>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-title" id="catTitle">🗂️ الفئات</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="cats" id="catsRow">
+    <button class="cat active" onclick="filterCat('all',this)" id="catAll">الكل</button>
+    <button class="cat" onclick="filterCat('electronics',this)">📱 إلكترونيات</button>
+    <button class="cat" onclick="filterCat('fashion',this)">👗 أزياء</button>
+    <button class="cat" onclick="filterCat('home',this)">🏠 منزل</button>
+    <button class="cat" onclick="filterCat('beauty',this)">💄 جمال</button>
+    <button class="cat" onclick="filterCat('sports',this)">⚽ رياضة</button>
+    <button class="cat" onclick="filterCat('kids',this)">🧸 أطفال</button>
+    <button class="cat" onclick="filterCat('digital',this)">💻 رقمي</button>
+    <button class="cat" onclick="filterCat('food',this)">☕ طعام</button>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-title" id="prodTitle">🔥 المنتجات</div>
+    <div class="sec-line"></div>
+    <button class="see-all" id="seeAll">عرض الكل</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-title" id="howTitle">⚡ كيف يعمل المتجر؟</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">1</div>
+      <div class="how-icon">🛒</div>
+      <div class="how-title" id="how1t">العميل يشتري</div>
+      <div class="how-desc" id="how1d">يختار منتجاً من متجرك ويدفع بالبطاقة أو عند الاستلام</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">2</div>
+      <div class="how-icon">📦</div>
+      <div class="how-title" id="how2t">الطلب للمورد</div>
+      <div class="how-desc" id="how2d">يُرسَل الطلب تلقائياً للمورد (AliExpress/CJ) ليشحن للعميل مباشرة</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">3</div>
+      <div class="how-icon">🚚</div>
+      <div class="how-title" id="how3t">الشحن المباشر</div>
+      <div class="how-desc" id="how3d">المورد يشحن للعميل مباشرة — أنت لا تلمس المنتج أبداً!</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">4</div>
+      <div class="how-icon">💰</div>
+      <div class="how-title" id="how4t">تأخذ عمولتك</div>
+      <div class="how-desc" id="how4d">الفرق بين سعر المورد وسعر بيعك = ربحك الصافي 100%</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMISSION MODEL -->
+<div class="section">
+  <div class="commission-box">
+    <div class="commission-info">
+      <h3 id="commTitle">💰 نموذج العمولة — صفر تكلفة!</h3>
+      <p id="commDesc">تشتري من المورد بسعر الجملة، تبيع بسعرك، الفرق ربحك.<br>لا مخزون • لا شحن • لا رأس مال</p>
+    </div>
+    <div class="commission-stats">
+      <div class="com-stat"><div class="com-num">%0</div><div class="com-label" id="cs1">تكلفة مبدئية</div></div>
+      <div class="com-stat"><div class="com-num">%30</div><div class="com-label" id="cs2">متوسط الربح</div></div>
+      <div class="com-stat"><div class="com-num">24/7</div><div class="com-label" id="cs3">يعمل تلقائياً</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-title" id="payTitle">💳 طرق الدفع</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="payment-box">
+    <div>
+      <div style="font-weight:800;font-size:1rem;margin-bottom:4px" id="payHead">جميع طرق الدفع مجانية الإعداد ✅</div>
+      <div style="font-size:0.78rem;color:var(--muted)" id="payDesc">آمن • مشفّر • معتمد دولياً</div>
+    </div>
+    <div class="pay-methods">
+      <div class="pay-badge">🤝 عند الاستلام</div>
+      <div class="pay-badge">💳 Visa</div>
+      <div class="pay-badge">💳 Mastercard</div>
+      <div class="pay-badge">📱 PayPal</div>
+      <div class="pay-badge">🏦 تحويل بنكي</div>
+      <div class="pay-badge">📲 Apple Pay</div>
+    </div>
+  </div>
+</div>
+
+<!-- FREE TOOLS -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-title" id="toolTitle">🛠️ أدوات مجانية 100%</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card"><div class="tool-icon">🤖</div><div class="tool-name">Tidio AI Chatbot</div><div class="tool-desc">بوت ذكاء اصطناعي يرد على العملاء 24/7</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">🛒</div><div class="tool-name">WooCommerce</div><div class="tool-desc">منصة متجر كاملة مجانية على WordPress</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">📦</div><div class="tool-name">DSers / CJdropshipping</div><div class="tool-desc">ربط تلقائي مع آلاف الموردين العالميين</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">💳</div><div class="tool-name">Stripe / PayPal</div><div class="tool-desc">قبول الدفع بالبطاقات — رسوم فقط عند البيع</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">📱</div><div class="tool-name">Buffer Free</div><div class="tool-desc">جدولة منشورات لكل منصات التواصل</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Google Analytics</div><div class="tool-desc">تحليل الزوار وتتبع المبيعات مجاناً</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">✉️</div><div class="tool-name">Mailchimp</div><div class="tool-desc">إرسال 1000 بريد شهرياً للعملاء</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">Canva Free</div><div class="tool-desc">تصميم إعلانات ومنشورات احترافية</div><span class="free-tag">✓ مجاني</span></div>
+    <div class="tool-card"><div class="tool-icon">🚚</div><div class="tool-name">EasyShip</div><div class="tool-desc">مقارنة أسعار شركات الشحن العالمية</div><span class="free-tag">✓ مجاني</span></div>
+  </div>
+</div>
+
+<!-- FREE SERVERS -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-title" id="serverTitle">🌐 سيرفرات مجانية للنشر</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="servers-grid">
+    <div class="server-card">
+      <div class="server-header">
+        <div class="server-icon">▲</div>
+        <div><div class="server-name">Vercel</div><div class="server-url">vercel.com</div></div>
+      </div>
+      <div class="server-features">
+        <div class="server-feat">نشر فوري في ثوانٍ</div>
+        <div class="server-feat">HTTPS مجاناً</div>
+        <div class="server-feat">CDN عالمي سريع</div>
+        <div class="server-feat">100GB bandwidth/شهر</div>
+      </div>
+      <button class="server-btn" onclick="window.open('https://vercel.com','_blank')">🚀 انشر الآن مجاناً</button>
+    </div>
+    <div class="server-card">
+      <div class="server-header">
+        <div class="server-icon">🌐</div>
+        <div><div class="server-name">Netlify</div><div class="server-url">netlify.com</div></div>
+      </div>
+      <div class="server-features">
+        <div class="server-feat">سحب وإفلات الملفات</div>
+        <div class="server-feat">HTTPS تلقائي</div>
+        <div class="server-feat">100GB bandwidth/شهر</div>
+        <div class="server-feat">نماذج مجانية</div>
+      </div>
+      <button class="server-btn" onclick="window.open('https://app.netlify.com/drop','_blank')">🚀 انشر الآن مجاناً</button>
+    </div>
+    <div class="server-card">
+      <div class="server-header">
+        <div class="server-icon">🐙</div>
+        <div><div class="server-name">GitHub Pages</div><div class="server-url">pages.github.com</div></div>
+      </div>
+      <div class="server-features">
+        <div class="server-feat">مجاني بلا حدود</div>
+        <div class="server-feat">نطاق مجاني .github.io</div>
+        <div class="server-feat">SSL مجاني</div>
+        <div class="server-feat">نسخ احتياطي تلقائي</div>
+      </div>
+      <button class="server-btn" onclick="window.open('https://github.com','_blank')">🚀 انشر الآن مجاناً</button>
+    </div>
+    <div class="server-card">
+      <div class="server-header">
+        <div class="server-icon">🔥</div>
+        <div><div class="server-name">Firebase Hosting</div><div class="server-url">firebase.google.com</div></div>
+      </div>
+      <div class="server-features">
+        <div class="server-feat">من Google — موثوق جداً</div>
+        <div class="server-feat">10GB storage مجاناً</div>
+        <div class="server-feat">CDN عالمي</div>
+        <div class="server-feat">قاعدة بيانات مجانية</div>
+      </div>
+      <button class="server-btn" onclick="window.open('https://firebase.google.com','_blank')">🚀 انشر الآن مجاناً</button>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-title" id="socialTitle">📣 منصات التواصل والإعلانات</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="social-grid">
+    <a href="https://business.facebook.com" target="_blank" class="social-btn">📘 Facebook Shop</a>
+    <a href="https://instagram.com" target="_blank" class="social-btn">📷 Instagram</a>
+    <a href="https://tiktok.com/business" target="_blank" class="social-btn">🎵 TikTok Shop</a>
+    <a href="https://pinterest.com" target="_blank" class="social-btn">📌 Pinterest</a>
+    <a href="https://twitter.com" target="_blank" class="social-btn">🐦 Twitter/X</a>
+    <a href="https://youtube.com" target="_blank" class="social-btn">▶️ YouTube</a>
+    <a href="https://wa.me" target="_blank" class="social-btn">💬 WhatsApp</a>
+    <a href="https://telegram.org" target="_blank" class="social-btn">✈️ Telegram</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 سوق فاتح الذكي | Fateh Smart Market</p>
+  <p>🌍 +150 دولة • 🔒 مدفوعات آمنة • 🤖 ذكاء اصطناعي • 💰 صفر تكلفة</p>
+</footer>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-head">
+    <h2 id="cartTitle">🛍️ سلة التسوق</h2>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty-state">
+      <span>🛒</span>
+      <span id="cartEmptyText">السلة فارغة</span>
+    </div>
+  </div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total"><span id="totalLabel">الإجمالي:</span><span id="totalVal"></span></div>
+    <div class="cart-commission"><span id="commLabel">💰 عمولتك:</span><span id="commVal" style="color:var(--green)"></span></div>
+    <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">✅ إتمام الشراء</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- CHATBOT -->
+<button class="chat-fab" onclick="toggleChat()">🤖</button>
+<div class="chat-win" id="chatWin">
+  <div class="chat-head">
+    <div class="chat-av">🤖</div>
+    <div>
+      <div class="chat-name-text" id="chatBotName">مساعد فاتح الذكي</div>
+      <div class="chat-online">● متاح الآن 24/7</div>
+    </div>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg bot" id="welcomeMsg">أهلاً! 👋 أنا مساعدك الذكي. أقدر أساعدك في المنتجات، الشحن، الدفع، أو أي شيء تريده!</div>
+  </div>
+  <div class="quick-qs">
+    <span class="quick-q" onclick="sendQ(this)">📦 تتبع طلب</span>
+    <span class="quick-q" onclick="sendQ(this)">💳 طرق الدفع</span>
+    <span class="quick-q" onclick="sendQ(this)">🚚 الشحن</span>
+    <span class="quick-q" onclick="sendQ(this)">💰 كيف أربح؟</span>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-inp" id="chatInp" placeholder="اكتب سؤالك..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="chat-send" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+// ===== PRODUCTS DATA (Dropshipping - Free from suppliers) =====
+const products = [
+  {id:1,name:'سماعات بلوتوث Pro X',nameEn:'Pro X Bluetooth Headphones',desc:'صوت نقي HD • ANC • 40 ساعة بطارية',descEn:'HD sound • ANC • 40h battery',price:59,supplierPrice:18,emoji:'🎧',cat:'electronics',badge:'خصم 50%',rating:5,reviews:2341},
+  {id:2,name:'ساعة ذكية Ultra',nameEn:'Ultra Smart Watch',desc:'GPS • قياس ضغط • مقاوم للماء IP68',descEn:'GPS • Blood pressure • IP68',price:89,supplierPrice:28,emoji:'⌚',cat:'electronics',badge:'الأكثر مبيعاً',rating:5,reviews:1876},
+  {id:3,name:'شاحن لاسلكي 65W',nameEn:'65W Wireless Charger',desc:'شحن سريع • 3 أجهزة معاً',descEn:'Fast charge • 3 devices',price:35,supplierPrice:10,emoji:'🔋',cat:'electronics',badge:'',rating:4,reviews:934},
+  {id:4,name:'عطر عود فاخر',nameEn:'Luxury Oud Perfume',desc:'عود وورد • يدوم 24 ساعة • 100ml',descEn:'Oud & Rose • 24h lasting',price:45,supplierPrice:12,emoji:'🌹',cat:'beauty',badge:'جديد',rating:5,reviews:567},
+  {id:5,name:'كريم مضاد للشيخوخة',nameEn:'Anti-Aging Cream',desc:'ريتينول • فيتامين C • ترطيب عميق',descEn:'Retinol • Vitamin C • Deep hydration',price:38,supplierPrice:11,emoji:'✨',cat:'beauty',badge:'',rating:4,reviews:1203},
+  {id:6,name:'حذاء رياضي Air',nameEn:'Air Sports Sneakers',desc:'إسفنج هوائي • خفيف جداً • 12 لون',descEn:'Air foam • Ultra light • 12 colors',price:65,supplierPrice:19,emoji:'👟',cat:'sports',badge:'',rating:5,reviews:3421},
+  {id:7,name:'حقيبة رياضية XL',nameEn:'XL Sports Bag',desc:'مقاوم للماء • جيوب متعددة • 45L',descEn:'Waterproof • Multiple pockets • 45L',price:42,supplierPrice:13,emoji:'🎒',cat:'sports',badge:'تخفيض',rating:4,reviews:789},
+  {id:8,name:'فستان صيفي بوهيمي',nameEn:'Bohemian Summer Dress',desc:'قطن ناعم • مقاسات XS-3XL',descEn:'Soft cotton • XS-3XL sizes',price:32,supplierPrice:9,emoji:'👗',cat:'fashion',badge:'',rating:4,reviews:1543},
+  {id:9,name:'ساعة رجالية كلاسيك',nameEn:'Classic Men\'s Watch',desc:'ستانلس ستيل • زجاج ياقوتي',descEn:'Stainless steel • Sapphire glass',price:95,supplierPrice:28,emoji:'🕰️',cat:'fashion',badge:'فاخر',rating:5,reviews:432},
+  {id:10,name:'مصباح LED RGB ذكي',nameEn:'Smart RGB LED Lamp',desc:'تحكم صوتي • 16 مليون لون',descEn:'Voice control • 16M colors',price:28,supplierPrice:8,emoji:'💡',cat:'home',badge:'',rating:4,reviews:2109},
+  {id:11,name:'مكيف هواء محمول',nameEn:'Portable Air Cooler',desc:'USB • صامت • 3 سرعات',descEn:'USB • Silent • 3 speeds',price:48,supplierPrice:15,emoji:'❄️',cat:'home',badge:'صيف',rating:4,reviews:876},
+  {id:12,name:'لعبة ليغو إبداعية',nameEn:'Creative LEGO Set',desc:'500 قطعة • للأعمار 6+ • مع دليل',descEn:'500 pieces • Ages 6+ • With guide',price:35,supplierPrice:10,emoji:'🧸',cat:'kids',badge:'',rating:5,reviews:1234},
+  {id:13,name:'طقم رسم للأطفال',nameEn:'Kids Drawing Set',desc:'48 لون • ألوان آمنة • حقيبة',descEn:'48 colors • Safe • Bag included',price:22,supplierPrice:6,emoji:'🎨',cat:'kids',badge:'تعليمي',rating:5,reviews:654},
+  {id:14,name:'كورس Dropshipping',nameEn:'Dropshipping Course',desc:'60 درس فيديو • شهادة • تحديثات مدى الحياة',descEn:'60 video lessons • Certificate',price:19,supplierPrice:0,emoji:'📚',cat:'digital',badge:'رقمي',rating:5,reviews:2876},
+  {id:15,name:'قهوة إثيوبية مختصة',nameEn:'Ethiopian Specialty Coffee',desc:'حبوب أصلية • 500g • تحميص فاتح',descEn:'Original beans • 500g',price:24,supplierPrice:7,emoji:'☕',cat:'food',badge:'',rating:5,reviews:987},
+  {id:16,name:'شاي أخضر ياباني',nameEn:'Japanese Green Tea',desc:'ماتشا أصلية • 250g • عضوي',descEn:'Original matcha • 250g • Organic',price:18,supplierPrice:5,emoji:'🍵',cat:'food',badge:'عضوي',rating:4,reviews:543},
+];
+
+let cart=[], lang='ar', currentCat='all';
+let chatHistory=[{role:'assistant',content:'أهلاً! 👋 أنا مساعدك الذكي. أقدر أساعدك في المنتجات، الشحن، الدفع، أو أي شيء تريده!'}];
+
+// ===== LANG =====
+function setLang(l){
+  lang=l;
+  const ar=l==='ar';
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(ar?'عربي':'EN')));
+  document.querySelector('html').setAttribute('dir',ar?'rtl':'ltr');
+  document.getElementById('logoText').textContent=ar?'سوق فاتح الذكي':'Fateh Smart Market';
+  document.getElementById('heroTitle').innerHTML=ar?'تسوّق من كل العالم<br><span class="highlight">بدون دينار واحد!</span>':'Shop From The World<br><span class="highlight">Zero Cost!</span>';
+  document.getElementById('heroDesc').textContent=ar?'متجر ذكي بنموذج Dropshipping — السلع مجانية، تدفع فقط عند البيع، وتأخذ عمولتك فوراً 💰':'Smart Dropshipping Store — Free products, pay only when you sell, earn commission instantly 💰';
+  document.getElementById('statProd').textContent=ar?'منتج':'Products';
+  document.getElementById('statCountry').textContent=ar?'دولة':'Countries';
+  document.getElementById('statCost').textContent=ar?'تكلفة':'Cost';
+  document.getElementById('statComm').textContent=ar?'عمولة':'Commission';
+  document.getElementById('searchInput').placeholder=ar?'🔍 ابحث عن أي منتج في العالم...':'🔍 Search any product worldwide...';
+  document.getElementById('searchBtn').textContent=ar?'بحث':'Search';
+  document.getElementById('catTitle').textContent=ar?'🗂️ الفئات':'🗂️ Categories';
+  document.getElementById('catAll').textContent=ar?'الكل':'All';
+  document.getElementById('prodTitle').textContent=ar?'🔥 المنتجات':'🔥 Products';
+  document.getElementById('seeAll').textContent=ar?'عرض الكل':'View All';
+  document.getElementById('howTitle').textContent=ar?'⚡ كيف يعمل المتجر؟':'⚡ How Does It Work?';
+  document.getElementById('how1t').textContent=ar?'العميل يشتري':'Customer Buys';
+  document.getElementById('how1d').textContent=ar?'يختار منتجاً من متجرك ويدفع بالبطاقة أو عند الاستلام':'Chooses a product and pays by card or cash on delivery';
+  document.getElementById('how2t').textContent=ar?'الطلب للمورد':'Order to Supplier';
+  document.getElementById('how2d').textContent=ar?'يُرسَل الطلب تلقائياً للمورد ليشحن للعميل مباشرة':'Order sent automatically to supplier to ship directly';
+  document.getElementById('how3t').textContent=ar?'الشحن المباشر':'Direct Shipping';
+  document.getElementById('how3d').textContent=ar?'المورد يشحن للعميل — أنت لا تلمس المنتج أبداً!':'Supplier ships to customer — you never touch the product!';
+  document.getElementById('how4t').textContent=ar?'تأخذ عمولتك':'Earn Commission';
+  document.getElementById('how4d').textContent=ar?'الفرق بين سعر المورد وسعر بيعك = ربحك الصافي 100%':'Difference between supplier price and your price = your profit!';
+  document.getElementById('commTitle').textContent=ar?'💰 نموذج العمولة — صفر تكلفة!':'💰 Commission Model — Zero Cost!';
+  document.getElementById('commDesc').textContent=ar?'تشتري من المورد بسعر الجملة، تبيع بسعرك، الفرق ربحك.\nلا مخزون • لا شحن • لا رأس مال':'Buy from supplier at wholesale, sell at your price, keep the difference.\nNo inventory • No shipping • No capital';
+  document.getElementById('cs1').textContent=ar?'تكلفة مبدئية':'Upfront Cost';
+  document.getElementById('cs2').textContent=ar?'متوسط الربح':'Avg. Profit';
+  document.getElementById('cs3').textContent=ar?'يعمل تلقائياً':'Works 24/7';
+  document.getElementById('payTitle').textContent=ar?'💳 طرق الدفع':'💳 Payment Methods';
+  document.getElementById('payHead').textContent=ar?'جميع طرق الدفع مجانية الإعداد ✅':'All payment methods free to setup ✅';
+  document.getElementById('toolTitle').textContent=ar?'🛠️ أدوات مجانية 100%':'🛠️ 100% Free Tools';
+  document.getElementById('serverTitle').textContent=ar?'🌐 سيرفرات مجانية للنشر':'🌐 Free Hosting Servers';
+  document.getElementById('socialTitle').textContent=ar?'📣 منصات التواصل والإعلانات':'📣 Social Media & Ads';
+  document.getElementById('cartTitle').textContent=ar?'🛍️ سلة التسوق':'🛍️ Cart';
+  document.getElementById('cartEmptyText').textContent=ar?'السلة فارغة':'Cart is empty';
+  document.getElementById('totalLabel').textContent=ar?'الإجمالي:':'Total:';
+  document.getElementById('commLabel').textContent=ar?'💰 عمولتك:':'💰 Your profit:';
+  document.getElementById('checkoutBtn').textContent=ar?'✅ إتمام الشراء':'✅ Checkout';
+  document.getElementById('chatBotName').textContent=ar?'مساعد فاتح الذكي':'Fateh Smart Assistant';
+  document.getElementById('chatInp').placeholder=ar?'اكتب سؤالك...':'Type your question...';
+  renderProducts();
+}
+
+// ===== PRODUCTS =====
+function renderProducts(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  const filtered=products.filter(p=>{
+    const matchCat=currentCat==='all'||p.cat===currentCat;
+    const matchQ=!q||p.name.includes(q)||p.nameEn.toLowerCase().includes(q);
+    return matchCat&&matchQ;
+  });
+  const ar=lang==='ar';
+  document.getElementById('productsGrid').innerHTML = filtered.length ? filtered.map(p=>{
+    const profit=p.price-p.supplierPrice;
+    const profitPct=Math.round((profit/p.price)*100);
+    return `<div class="product-card">
+      ${p.badge?`<div class="badge-abs">${p.badge}</div>`:''}
+      <div class="badge-abs commission" style="top:${p.badge?'36px':'10px'};right:10px">💰 ${profitPct}%</div>
+      <div class="product-img">${p.emoji}</div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span class="stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</span>
+          <span class="reviews">(${p.reviews.toLocaleString()})</span>
+        </div>
+        <div class="product-name">${ar?p.name:p.nameEn}</div>
+        <div class="product-desc">${ar?p.desc:p.descEn}</div>
+        <div class="product-footer">
+          <div class="prices">
+            ${p.supplierPrice>0?`<div class="price-old">${ar?'المورد':'Supplier'}: $${p.supplierPrice}</div>`:''}
+            <div class="price-new">$${p.price}</div>
+            <div class="commission-badge">+$${profit} ${ar?'ربحك':'profit'}</div>
+          </div>
+          <button class="add-btn" onclick="addToCart(${p.id})">${ar?'+ سلة':'+ Cart'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('') : `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)">${ar?'لا توجد نتائج':'No results found'}</div>`;
+}
+
+function filterCat(cat,el){
+  currentCat=cat;
+  document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts();
+}
+
+// ===== CART =====
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  cart.push({...p});
+  document.getElementById('cartCount').textContent=cart.length;
+  const ar=lang==='ar';
+  showToast(`✅ ${ar?'أُضيف:':'Added:'} ${ar?p.name:p.nameEn}`, 'success');
+  renderCart();
+}
+
+function renderCart(){
+  const ar=lang==='ar';
+  const body=document.getElementById('cartBody');
+  const foot=document.getElementById('cartFoot');
+  if(!cart.length){
+    body.innerHTML=`<div class="cart-empty-state"><span>🛒</span><span>${ar?'السلة فارغة':'Cart is empty'}</span></div>`;
+    foot.style.display='none';
+    return;
+  }
+  const total=cart.reduce((s,p)=>s+p.price,0);
+  const commTotal=cart.reduce((s,p)=>s+(p.price-p.supplierPrice),0);
+  body.innerHTML=cart.map((p,i)=>`
+    <div class="cart-item">
+      <div class="ci-emoji">${p.emoji}</div>
+      <div class="ci-info">
+        <div class="ci-name">${ar?p.name:p.nameEn}</div>
+        <div class="ci-price">$${p.price}</div>
+        <div class="ci-commission">💰 ${ar?'ربحك':'Profit'}: $${p.price-p.supplierPrice}</div>
+      </div>
+      <button class="ci-remove" onclick="removeItem(${i})">🗑</button>
+    </div>`).join('');
+  document.getElementById('totalVal').textContent=`$${total}`;
+  document.getElementById('commVal').textContent=`$${commTotal}`;
+  foot.style.display='flex';
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  document.getElementById('cartCount').textContent=cart.length;
+  renderCart();
+}
+
+function openCart(){
+  document.getElementById('cartPanel').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+function closeCart(){
+  document.getElementById('cartPanel').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+function checkout(){
+  const ar=lang==='ar';
+  const total=cart.reduce((s,p)=>s+p.price,0);
+  const comm=cart.reduce((s,p)=>s+(p.price-p.supplierPrice),0);
+  alert(ar
+    ? `🎉 تم الطلب بنجاح!\n💰 إجمالي المبيعات: $${total}\n✅ عمولتك الصافية: $${comm}\n\nسيتم إرسال الطلب للمورد تلقائياً!`
+    : `🎉 Order placed!\n💰 Total sales: $${total}\n✅ Your profit: $${comm}\n\nOrder sent to supplier automatically!`);
+  cart=[];
+  document.getElementById('cartCount').textContent=0;
+  renderCart();
+  closeCart();
+}
+
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className=`toast ${type} show`;
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ===== CHATBOT =====
+function toggleChat(){ document.getElementById('chatWin').classList.toggle('open'); }
+
+async function sendMsg(){
+  const inp=document.getElementById('chatInp');
+  const text=inp.value.trim();
+  if(!text)return;
+  inp.value='';
+  appendMsg(text,'user');
+  chatHistory.push({role:'user',content:text});
+  showTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:`أنت مساعد متجر Dropshipping ذكي اسمه "سوق فاتح الذكي". 
+نموذج العمل: نبيع منتجات من موردين عالميين (AliExpress, CJ) بدون مخزون، الربح هو الفرق بين سعر المورد وسعر البيع.
+المنتجات الأكثر مبيعاً: ${products.slice(0,6).map(p=>p.name+' بـ$'+p.price+' وربح $'+(p.price-p.supplierPrice)).join(', ')}.
+طرق الدفع: عند الاستلام، Visa، Mastercard، PayPal، Apple Pay.
+الشحن: عالمي 5-15 يوم.
+السيرفرات المجانية: Vercel، Netlify، GitHub Pages، Firebase.
+أجب بإيجاز، وضح الأرباح دائماً، كن متحمساً ومحترفاً. تحدث بالعربية أو الإنجليزية حسب سؤال المستخدم.`,
+        messages:chatHistory
+      })
+    });
+    const data=await res.json();
+    removeTyping();
+    const reply=data.content?.[0]?.text||(lang==='ar'?'عذراً، حاول مجدداً':'Sorry, try again');
+    appendMsg(reply,'bot');
+    chatHistory.push({role:'assistant',content:reply});
+  }catch(e){
+    removeTyping();
+    appendMsg(getFallback(text),'bot');
+  }
+}
+
+function getFallback(q){
+  q=q.toLowerCase();
+  if(q.includes('ربح')||q.includes('عمول')||q.includes('profit')) return '💰 تربح الفرق بين سعر المورد وسعر بيعك! مثلاً: تشتري بـ$18 وتبيع بـ$59 = ربح $41 صافي!';
+  if(q.includes('شحن')||q.includes('ship')) return '🚚 المورد يشحن مباشرة للعميل في 5-15 يوم. أنت لا تتعامل مع الشحن أبداً!';
+  if(q.includes('دفع')||q.includes('pay')) return '💳 نقبل: دفع عند الاستلام، Visa، Mastercard، PayPal، Apple Pay — كلها مجانية الإعداد!';
+  if(q.includes('مجان')||q.includes('free')) return '✅ كل شيء مجاني! المتجر، الاستضافة، الأدوات، وحتى المنتجات لا تدفع عليها إلا عند البيع!';
+  if(q.includes('تتبع')||q.includes('track')) return '📦 أرسل رقم طلبك وسنتابع معك فوراً عبر واتساب أو البريد!';
+  return '😊 مرحباً! أنا هنا أساعدك. اسألني عن أي منتج، الشحن، الدفع، أو كيفية الربح من المتجر!';
+}
+
+function sendQ(el){ document.getElementById('chatInp').value=el.textContent; sendMsg(); }
+
+function appendMsg(text,type){
+  const msgs=document.getElementById('chatMsgs');
+  const div=document.createElement('div');
+  div.className=`msg ${type}`; div.textContent=text;
+  msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight;
+}
+function showTyping(){
+  const msgs=document.getElementById('chatMsgs');
+  const div=document.createElement('div');
+  div.className='msg bot typing-wrap';
+  div.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight;
+}
+function removeTyping(){ const t=document.querySelector('.typing-wrap'); if(t)t.remove(); }
+
+// Init
+renderProducts();
+</script>
+</body>
+</html>
