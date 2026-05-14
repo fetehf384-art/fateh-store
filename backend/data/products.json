@@ -1,0 +1,14 @@
+[
+  {"id":1,"name":"سماعات بلوتوث لاسلكية Pro Max","emoji":"🎧","price":2800,"orig":5500,"platform":"AliExpress","cat":"electronics","rating":4.8,"sales":1234,"hot":true},
+  {"id":2,"name":"ساعة ذكية Samsung Galaxy Watch","emoji":"⌚","price":15000,"orig":22000,"platform":"Amazon","cat":"electronics","rating":4.9,"sales":856,"hot":true},
+  {"id":3,"name":"حقيبة نسائية جلد أصلي فاخرة","emoji":"👜","price":4500,"orig":8000,"platform":"Shein","cat":"fashion","rating":4.7,"sales":2100,"hot":false},
+  {"id":4,"name":"مكيف هواء موبايل 12000 BTU","emoji":"❄️","price":45000,"orig":65000,"platform":"Jumia","cat":"home","rating":4.6,"sales":432,"hot":true},
+  {"id":5,"name":"عطر رجالي فرنسي أصلي","emoji":"🧴","price":6500,"orig":12000,"platform":"CJ Dropship","cat":"beauty","rating":4.9,"sales":3200,"hot":false},
+  {"id":6,"name":"حذاء رياضي Nike Air Max 2024","emoji":"👟","price":8900,"orig":16000,"platform":"AliExpress","cat":"sports","rating":4.8,"sales":1567,"hot":true},
+  {"id":7,"name":"مكنسة روبوت ذكية WiFi","emoji":"🤖","price":18000,"orig":32000,"platform":"Amazon","cat":"home","rating":4.7,"sales":678,"hot":false},
+  {"id":8,"name":"هاتف Samsung A55 5G","emoji":"📱","price":65000,"orig":85000,"platform":"Noon","cat":"electronics","rating":4.9,"sales":2340,"hot":true},
+  {"id":9,"name":"لعبة سيارة تحكم عن بعد","emoji":"🚗","price":3200,"orig":5500,"platform":"Temu","cat":"kids","rating":4.5,"sales":890,"hot":false},
+  {"id":10,"name":"قهوة عربية فاخرة 500غ","emoji":"☕","price":1800,"orig":3200,"platform":"CJ Dropship","cat":"food","rating":4.8,"sales":4500,"hot":false},
+  {"id":11,"name":"لابتوب Lenovo IdeaPad i5","emoji":"💻","price":95000,"orig":130000,"platform":"Amazon","cat":"electronics","rating":4.8,"sales":345,"hot":true},
+  {"id":12,"name":"مجموعة عناية بالبشرة كورية","emoji":"💆","price":4200,"orig":7500,"platform":"Shein","cat":"beauty","rating":4.7,"sales":2890,"hot":false}
+]
