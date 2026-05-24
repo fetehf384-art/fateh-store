@@ -3,17 +3,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # هذا الإذن هو ما تحتاجه ليعمل البوت بعد تعديل الإعدادات
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # SHA for v4
+      
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@0b93645e5efa731d7a3e30f1469736561168925e # SHA for v5
         with:
           python-version: '3.9'
           
@@ -25,6 +25,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "البوت قام بتحديث الملفات بنجاح" || echo "لا توجد تغييرات للالتزام بها"
+          git commit -m "تحديث تلقائي من البوت" || echo "لا توجد تغييرات"
           git push
           
