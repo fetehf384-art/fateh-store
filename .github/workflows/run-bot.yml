@@ -1,0 +1,25 @@
+name: Run My Bot
+on:
+  schedule:
+    - cron: '0 * * * *' # هذا يجعله يعمل تلقائياً كل ساعة
+  workflow_dispatch: # هذا الزر يتيح لك تشغيله يدوياً متى أردت
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Run bot.py
+        run: python bot.py
+      - name: Commit result
+        run: |
+          git config --global user.name "Bot"
+          git config --global user.email "bot@github.com"
+          git add bot_log.txt
+          git commit -m "البوت قام بالتحديث" || exit 0
+          git push
