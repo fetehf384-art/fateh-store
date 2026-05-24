@@ -27,4 +27,3 @@ jobs:
           git add .
           git commit -m "تحديث تلقائي من البوت" || echo "لا توجد تغييرات"
           git push
-          
