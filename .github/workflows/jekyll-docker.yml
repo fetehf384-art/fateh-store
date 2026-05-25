@@ -1,20 +1,33 @@
-name: Jekyll site CI
-
+name: Run My Bot
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+      - name: Manual Execution
+        run: |
+          # 1. تثبيت المكتبات اللازمة
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          pip3 install requests beautifulsoup4
+          
+          # 2. إعداد الهوية للـ git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 3. تحميل ملفات المستودع
+          git clone https://github.com/${{ github.repository }}.git .
+          
+          # 4. تشغيل البوت
+          python3 bot.py
+          
+          # 5. رفع النتائج
+          git add bot_log.txt
+          git commit -m "تحديث تلقائي من البوت" || echo "لا توجد تغييرات"
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          
