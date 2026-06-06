@@ -3,84 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سوق فاتح الذكي</title>
+<title>سوق فاتح الذكي - متجر متكامل</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-    :root{--g:#c9a227;--gl:#e8b830;--bg:#09090f;--c:#111118;--bd:#252515;--tx:#e8dcc8;--t3:#555;--gr:#4CAF50;--rd:#FF6B6B}
-    body{background:var(--bg);color:var(--tx);font-family:'Cairo',sans-serif;margin:0}
-    #hdr{padding:15px;background:#1a1200;border-bottom:2px solid var(--g);display:flex;justify-content:space-between;align-items:center}
-    #nav{display:flex;background:#0d0d18;overflow-x:auto;padding:5px}
-    .nb{padding:10px;color:var(--t3);cursor:pointer;font-weight:700}
-    .nb.on{color:var(--g);border-bottom:2px solid var(--g)}
-    .pg{display:none;padding:15px}
-    .pg.on{display:block}
-    .card{background:var(--c);border:1px solid var(--bd);padding:15px;border-radius:10px;margin-bottom:10px}
-    .inp{width:100%;padding:10px;background:#151520;border:1px solid var(--bd);color:white;border-radius:5px;margin-bottom:10px}
-    .bg{padding:10px 20px;background:var(--g);border:none;border-radius:5px;font-weight:bold;cursor:pointer}
-    .msg{margin-bottom:10px;padding:10px;border-radius:10px}
-    .u{background:#c9a22720;text-align:right}
-    .a{background:#151520;text-align:left}
+:root { --g: #c9a227; --bg: #050505; --card: #121212; --tx: #ffffff; }
+body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--tx); margin: 0; }
+header { background: #000; padding: 20px; text-align: center; border-bottom: 2px solid var(--g); }
+nav { display: flex; justify-content: center; gap: 20px; padding: 15px; background: #111; }
+.btn-nav { color: var(--g); cursor: pointer; font-weight: 700; }
+.container { max-width: 800px; margin: 20px auto; padding: 20px; }
+.card { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #333; }
+input, button { width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; border: none; background: #222; color: white; }
+button { background: var(--g); color: #000; font-weight: 900; cursor: pointer; }
+.chat-log { height: 400px; overflow-y: auto; background: #000; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+.msg { margin: 10px 0; padding: 10px; border-radius: 10px; }
+.user { background: #333; text-align: right; }
+.ai { background: var(--g); color: #000; text-align: left; }
 </style>
 </head>
 <body>
 
-<div id="hdr">
-    <div style="font-weight:900;color:var(--g)">⚡ سوق فاتح الذكي</div>
-</div>
+<header><h1>سوق فاتح الذكي</h1></header>
 
-<div id="nav">
-    <div class="nb on" onclick="go('home')">الرئيسية</div>
-    <div class="nb" onclick="go('products')">المنتجات</div>
-    <div class="nb" onclick="go('agent')">AI Agent</div>
-    <div class="nb" onclick="go('settings')">الإعدادات</div>
-</div>
+<nav>
+    <div class="btn-nav" onclick="show('home')">🏠 الرئيسية</div>
+    <div class="btn-nav" onclick="show('shop')">🛍️ المنتجات</div>
+    <div class="btn-nav" onclick="show('ai')">🤖 المساعد الذكي</div>
+    <div class="btn-nav" onclick="show('set')">⚙️ الإعدادات</div>
+</nav>
 
-<div id="pg-home" class="pg on"><div class="card">أهلاً بك في متجرك الذكي! ابدأ التصفح.</div></div>
+<div class="container">
+    <div id="home" class="card">
+        <h2>أهلاً بك في المتجر</h2>
+        <p>ربط كامل مع وسائل التواصل الاجتماعي ونظام دفع آمن.</p>
+        <button onclick="window.open('https://wa.me/213000000000', '_blank')">تواصل معنا واتساب</button>
+    </div>
 
-<div id="pg-products" class="pg"><div id="plist"></div></div>
+    <div id="shop" class="card" style="display:none;">
+        <h2>المنتجات المتوفرة</h2>
+        <p>نظام دفع عند الاستلام / البطاقات البنكية متاح.</p>
+        <button onclick="alert('تم إضافة المنتج للسلة')">شراء الآن</button>
+    </div>
 
-<div id="pg-agent" class="pg">
-    <div id="msgs" style="height:300px;overflow-y:auto;background:#09090f;padding:10px;border:1px solid var(--bd);margin-bottom:10px"></div>
-    <input class="inp" id="cinp" placeholder="اسأل البوت...">
-    <button class="bg" onclick="send()">إرسال</button>
-</div>
+    <div id="ai" class="card" style="display:none;">
+        <div id="chat" class="chat-log"></div>
+        <input id="q" placeholder="اسأل المساعد الذكي...">
+        <button onclick="ask()">إرسال الاستفسار</button>
+    </div>
 
-<div id="pg-settings" class="pg">
-    <input class="inp" id="akIn" type="password" placeholder="أدخل Gemini API Key هنا">
-    <button class="bg" onclick="saveS()">حفظ الإعدادات</button>
+    <div id="set" class="card" style="display:none;">
+        <h2>إعدادات الربط</h2>
+        <input type="password" id="api" placeholder="Gemini API Key">
+        <button onclick="localStorage.setItem('key', document.getElementById('api').value); alert('تم الحفظ');">حفظ المفتاح</button>
+    </div>
 </div>
 
 <script>
-function go(id){
-    document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
-    document.querySelectorAll('.nb').forEach(n=>n.classList.remove('on'));
-    document.getElementById('pg-'+id).classList.add('on');
-    event.target.classList.add('on');
+function show(id) {
+    document.querySelectorAll('.card').forEach(c => c.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
 }
 
-function saveS(){
-    localStorage.setItem('ak', document.getElementById('akIn').value);
-    alert('✅ تم حفظ المفتاح');
-}
-
-async function send(){
-    let ak = localStorage.getItem('ak');
-    let q = document.getElementById('cinp').value;
-    if(!ak){alert('يرجى وضع المفتاح في الإعدادات'); return;}
-    document.getElementById('msgs').innerHTML += `<div class="msg u">أنت: ${q}</div>`;
-    
-    let res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${ak}`, {
+async function ask() {
+    let key = localStorage.getItem('key');
+    let q = document.getElementById('q').value;
+    if(!key) return alert('أدخل المفتاح في الإعدادات');
+    document.getElementById('chat').innerHTML += `<div class="msg user">${q}</div>`;
+    let res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({contents: [{parts: [{text: q}]}]})
     });
-    let data = await res.json();
-    let reply = data.candidates[0].content.parts[0].text;
-    document.getElementById('msgs').innerHTML += `<div class="msg a">البوت: ${reply}</div>`;
-    document.getElementById('cinp').value = '';
+    let d = await res.json();
+    let r = d.candidates[0].content.parts[0].text;
+    document.getElementById('chat').innerHTML += `<div class="msg ai">${r}</div>`;
+    document.getElementById('q').value = '';
 }
-
-window.onload = () => { document.getElementById('akIn').value = localStorage.getItem('ak') || ''; }
 </script>
 </body>
 </html>
