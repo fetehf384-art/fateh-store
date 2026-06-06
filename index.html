@@ -2,326 +2,325 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>سوق فاتح الذكي ⚡</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>سوق فاتح الذكي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --gold:#c9a227;--gold-l:#e8b830;--bg:#080810;--bg2:#0f0f18;--bg3:#151520;
-  --card:#111118;--border:#2a2520;--text:#e8dcc8;--t2:#aaa;--t3:#666;
-  --green:#4CAF50;--red:#FF6B6B;--orange:#FF9900;--wa:#25D366;
-}
-body{background:var(--bg);color:var(--text);font-family:'Cairo',Arial,sans-serif;direction:rtl;min-height:100vh;overflow-x:hidden}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#c9a227;--gl:#e8b830;--bg:#09090f;--c:#111118;--bd:#252515;--tx:#e8dcc8;--t2:#999;--t3:#555;--gr:#4CAF50;--rd:#FF6B6B;--or:#FF9900;--wa:#25D366}
+body{background:var(--bg);color:var(--tx);font-family:'Cairo',sans-serif;direction:rtl;min-height:100vh}
+a{text-decoration:none}
 
 /* HEADER */
-.hdr{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,#0d0900,#1a1200,#0d0900);border-bottom:2px solid var(--gold);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,#f0c040,#c9a227,#e8b830);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.logo-sub{font-size:0.6rem;color:var(--t3);margin-top:1px}
-.badge{background:var(--gold);color:#0a0800;font-size:0.55rem;padding:2px 7px;border-radius:20px;font-weight:900}
-.dot{width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;margin-left:4px;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+#hdr{position:sticky;top:0;z-index:99;background:linear-gradient(90deg,#0a0800,#1a1200,#0a0800);border-bottom:2px solid var(--g);padding:12px 15px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,#f0c040,#c9a227);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.badge{background:var(--g);color:#0a0800;font-size:0.55rem;padding:2px 7px;border-radius:20px;font-weight:900}
+.dot{display:inline-block;width:6px;height:6px;background:var(--gr);border-radius:50%;animation:p 2s infinite;margin-left:3px}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* NAV */
-.nav{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;z-index:99}
-.nav::-webkit-scrollbar{display:none}
-.nb{padding:10px 15px;border:none;background:none;color:var(--t3);border-bottom:2px solid transparent;font-family:'Cairo',Arial,sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
-.nb.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:700}
+#nav{display:flex;background:#0d0d18;border-bottom:1px solid var(--bd);overflow-x:auto;position:sticky;top:57px;z-index:98}
+#nav::-webkit-scrollbar{display:none}
+.nb{flex-shrink:0;padding:11px 14px;border:none;background:none;color:var(--t3);border-bottom:2px solid transparent;font-family:'Cairo',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:.2s}
+.nb.on{color:var(--g);border-bottom-color:var(--g);font-weight:800}
 
-/* CONTENT */
-.content{padding:12px 14px;max-width:500px;margin:0 auto;padding-bottom:24px}
+/* PAGES */
+.pg{display:none;padding:12px 14px;max-width:480px;margin:0 auto;padding-bottom:30px}
+.pg.on{display:block}
 
-/* CARDS */
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
-.card-gold{background:linear-gradient(135deg,#1a1200,#221800);border-color:#3a2e10}
+/* CARD */
+.card{background:var(--c);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:10px}
+.card-g{background:linear-gradient(135deg,#140f00,#1e1500);border-color:#3a2a00}
 
-/* BUTTONS */
-.btn-g{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#0a0800;border:none;border-radius:8px;padding:9px 16px;font-weight:800;cursor:pointer;font-size:0.8rem;font-family:'Cairo',Arial,sans-serif;display:inline-flex;align-items:center;gap:5px;text-decoration:none}
-.btn-o{background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:0.78rem;font-family:'Cairo',Arial,sans-serif;display:inline-flex;align-items:center;gap:5px;text-decoration:none}
-.btn-wa{background:var(--wa);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-weight:800;cursor:pointer;font-size:0.8rem;font-family:'Cairo',Arial,sans-serif;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+/* BTNS */
+.bg{background:linear-gradient(135deg,var(--g),var(--gl));color:#0a0800;border:none;border-radius:8px;padding:9px 15px;font-weight:800;cursor:pointer;font-size:0.8rem;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:5px}
+.bo{background:transparent;color:var(--g);border:1px solid var(--g);border-radius:8px;padding:8px 13px;font-weight:700;cursor:pointer;font-size:0.78rem;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:5px}
+.bw{background:var(--wa);color:#fff;border:none;border-radius:8px;padding:9px 15px;font-weight:800;cursor:pointer;font-size:0.8rem;font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:5px}
 
 /* STATS */
 .sg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
 .sb{border-radius:12px;padding:12px;text-align:center}
-.sv{font-size:1.2rem;font-weight:900}
-.sl{font-size:0.6rem;color:var(--t3);margin-top:2px}
 
 /* PRODUCTS */
-.pc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;transition:border-color .2s}
-.pc:hover,.pc.open{border-color:var(--gold)}
-.ptype{font-size:0.6rem;padding:2px 6px;border-radius:20px;font-weight:700}
-.pl{background:#4CAF5020;color:var(--green);border:1px solid #4CAF5040}
-.pi{background:#c9a22720;color:var(--gold);border:1px solid #c9a22740}
-.pexp{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
-.pexp.show{display:block}
+.pc{background:var(--c);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;transition:border-color .2s}
+.pc.on{border-color:var(--g)}
+.pe{display:none;border-top:1px solid var(--bd);margin-top:10px;padding-top:10px}
+.pe.on{display:block}
+.tl{background:var(--bd);border-radius:3px;height:4px;margin:6px 0 2px}
+.tf{height:4px;border-radius:3px;background:linear-gradient(90deg,var(--g),var(--gl))}
+.pl{font-size:.6rem;padding:2px 6px;border-radius:20px;font-weight:700;background:#4CAF5020;color:var(--gr);border:1px solid #4CAF5040}
+.pi{font-size:.6rem;padding:2px 6px;border-radius:20px;font-weight:700;background:#c9a22720;color:var(--g);border:1px solid #c9a22740}
 
-/* FILTERS */
-.fr{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:8px;margin-bottom:10px}
+/* FILTER */
+.fr{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:10px}
 .fr::-webkit-scrollbar{display:none}
-.pill{padding:5px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--t3);white-space:nowrap;font-family:'Cairo',Arial,sans-serif;transition:all .2s}
-.pill.active{background:var(--gold);color:#0a0800;border-color:var(--gold)}
+.pill{flex-shrink:0;padding:5px 11px;border-radius:20px;font-size:.72rem;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--t3);font-family:'Cairo',sans-serif;transition:.2s}
+.pill.on{background:var(--g);color:#0a0800;border-color:var(--g)}
 
 /* INPUTS */
-.sinp{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Cairo',Arial,sans-serif;font-size:0.85rem;outline:none;margin-bottom:10px}
-.sinp:focus{border-color:var(--gold)}
-.sinp[dir="ltr"]{text-align:left}
+.inp{width:100%;background:#151520;border:1px solid var(--bd);border-radius:8px;padding:10px 12px;color:var(--tx);font-family:'Cairo',sans-serif;font-size:.85rem;outline:none;margin-bottom:8px}
+.inp:focus{border-color:var(--g)}
 
 /* CHAT */
-.cc{display:flex;flex-direction:column;height:calc(100vh - 168px)}
-.cm{flex:1;overflow-y:auto;padding:8px 0;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-.msg{display:flex;margin-bottom:10px}
+.cc{display:flex;flex-direction:column;height:calc(100vh - 175px)}
+.cm{flex:1;overflow-y:auto;padding:6px 0}
+.msg{display:flex;margin-bottom:8px}
 .msg.u{justify-content:flex-start}
 .msg.a{justify-content:flex-end}
-.bbl{max-width:82%;padding:10px 12px;border-radius:12px;font-size:0.8rem;line-height:1.7;white-space:pre-wrap}
-.msg.u .bbl{background:#c9a22720;border:1px solid #c9a22740;border-radius:12px 12px 4px 12px}
-.msg.a .bbl{background:var(--bg3);border:1px solid var(--border);border-radius:12px 12px 12px 4px}
-.cir{display:flex;gap:8px;padding-top:10px;border-top:1px solid var(--border)}
-.cinp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Cairo',Arial,sans-serif;font-size:0.85rem;outline:none;direction:rtl}
-.cinp:focus{border-color:var(--gold)}
+.bb{max-width:82%;padding:10px 12px;border-radius:12px;font-size:.8rem;line-height:1.7}
+.msg.u .bb{background:#c9a22715;border:1px solid #c9a22730;border-radius:12px 12px 4px 12px}
+.msg.a .bb{background:#151520;border:1px solid var(--bd);border-radius:12px 12px 12px 4px}
+.ci{display:flex;gap:7px;padding-top:9px;border-top:1px solid var(--bd);margin-top:6px}
+.ci input{flex:1;background:#151520;border:1px solid var(--bd);border-radius:8px;padding:10px 12px;color:var(--tx);font-family:'Cairo',sans-serif;font-size:.85rem;outline:none;direction:rtl}
+.ci input:focus{border-color:var(--g)}
 
-/* TREND BAR */
-.tbb{background:var(--border);border-radius:4px;height:4px;margin-top:6px}
-.tbf{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-l))}
-
-.ir{display:flex;justify-content:space-between;font-size:0.72rem;color:var(--t3);margin-bottom:3px}
-.st{font-size:0.88rem;font-weight:800;color:var(--gold);margin-bottom:12px}
-
-@media(max-width:380px){.sg{grid-template-columns:1fr 1fr}}
+/* SECTION TITLE */
+.st{font-size:.88rem;font-weight:800;color:var(--g);margin-bottom:12px}
+.warn{background:#FF6B6B15;border:1px solid #FF6B6B40;border-radius:8px;padding:10px;font-size:.75rem;color:var(--rd);margin-bottom:8px;display:none}
 </style>
 </head>
 <body>
 
-<header class="hdr">
+<div id="hdr">
   <div>
-    <div class="logo" id="logo-title">⚡ سوق فاتح الذكي</div>
-    <div class="logo-sub">Fateh Smart Market</div>
+    <div class="logo" id="logoTxt">⚡ سوق فاتح الذكي</div>
+    <div style="font-size:.6rem;color:var(--t3)">Fateh Smart Market</div>
   </div>
   <div style="text-align:left">
     <div class="badge">PRO AGENT</div>
-    <div style="font-size:0.65rem;color:var(--gold);margin-top:3px"><span class="dot"></span>نشط 24/7</div>
+    <div style="font-size:.65rem;color:var(--g);margin-top:3px"><span class="dot"></span>نشط 24/7</div>
   </div>
-</header>
+</div>
 
-<nav class="nav">
-  <button class="nb active" onclick="ST('home')">🏠 الرئيسية</button>
-  <button class="nb" onclick="ST('products')">🛍️ المنتجات</button>
-  <button class="nb" onclick="ST('agent')">🤖 AI Agent</button>
-  <button class="nb" onclick="ST('suppliers')">🏪 الموردين</button>
-  <button class="nb" onclick="ST('settings')">⚙️ الإعدادات</button>
-</nav>
-
-<div class="content">
+<div id="nav">
+  <button class="nb on" onclick="go('home')">🏠 الرئيسية</button>
+  <button class="nb" onclick="go('products')">🛍️ المنتجات</button>
+  <button class="nb" onclick="go('agent')">🤖 AI Agent</button>
+  <button class="nb" onclick="go('suppliers')">🏪 الموردين</button>
+  <button class="nb" onclick="go('settings')">⚙️ الإعدادات</button>
+</div>
 
 <!-- HOME -->
-<div id="T-home">
+<div id="pg-home" class="pg on">
   <div style="text-align:center;margin:10px 0 16px">
-    <div style="font-size:0.72rem;color:var(--t3)">إجمالي الأرباح - يونيو 2026</div>
-    <div style="font-size:2.4rem;font-weight:900;color:var(--gold)">0 دج</div>
-    <div style="font-size:0.68rem;color:var(--t3)">ابدأ أول طلب وشوف الأرباح تتراكم 🚀</div>
+    <div style="font-size:.72rem;color:var(--t3)">إجمالي الأرباح</div>
+    <div style="font-size:2.4rem;font-weight:900;color:var(--g)">0 دج</div>
+    <div style="font-size:.65rem;color:var(--t3)">ابدأ أول طلب 🚀</div>
   </div>
   <div class="sg">
-    <div class="sb" style="background:#4CAF5015;border:1px solid #4CAF5030"><div class="sv" style="color:var(--green)">12</div><div class="sl">منتج نشط</div></div>
-    <div class="sb" style="background:#c9a22715;border:1px solid #c9a22730"><div class="sv" style="color:var(--gold)">7</div><div class="sl">موردين</div></div>
-    <div class="sb" style="background:#FF6B6B15;border:1px solid #FF6B6B30"><div class="sv" style="color:var(--red)">0</div><div class="sl">طلبات</div></div>
+    <div class="sb" style="background:#4CAF5015;border:1px solid #4CAF5030"><div style="font-size:1.2rem;font-weight:900;color:var(--gr)">12</div><div style="font-size:.6rem;color:var(--t3)">منتج نشط</div></div>
+    <div class="sb" style="background:#c9a22715;border:1px solid #c9a22730"><div style="font-size:1.2rem;font-weight:900;color:var(--g)">7</div><div style="font-size:.6rem;color:var(--t3)">موردين</div></div>
+    <div class="sb" style="background:#FF6B6B15;border:1px solid #FF6B6B30"><div style="font-size:1.2rem;font-weight:900;color:var(--rd)">0</div><div style="font-size:.6rem;color:var(--t3)">طلبات</div></div>
   </div>
-  <div class="card card-gold">
-    <div class="st">🔥 أحسن 3 منتجات ترند الآن</div>
+  <div class="card card-g">
+    <div class="st">🔥 أحسن 3 منتجات ترند</div>
     <div id="top3"></div>
   </div>
   <div class="card">
-    <div class="st" style="color:var(--green)">💡 كيف يشتغل المتجر</div>
-    <div style="font-size:0.78rem;color:var(--t2);line-height:1.9">
-      <b style="color:var(--gold)">نموذج 1 — محلي 🇩🇿</b><br>
-      زبون يشوف المنتج ← يطلب عبر WhatsApp ← أنت تطلب من المورد ← المورد يوصل ← الزبون يدفع COD<br><br>
-      <b style="color:var(--gold)">نموذج 2 — دولي 🌍</b><br>
-      زبون يضغط رابط ← يشتري من AliExpress/Temu ← أنت تاخذ عمولة مباشرة<br><br>
-      <span style="color:var(--gold)">🎯 هدف واقعي: 5-10 طلبات/يوم = 3,000-8,000 دج/يوم</span>
+    <div class="st" style="color:var(--gr)">💡 كيف يشتغل المتجر</div>
+    <div style="font-size:.78rem;color:var(--t2);line-height:1.9">
+      <b style="color:var(--g)">🇩🇿 محلي:</b> زبون يشوف ← يطلب واتساب ← أنت تطلب من مورد ← يوصل ← يدفع COD<br>
+      <b style="color:var(--g)">🌍 دولي:</b> زبون يضغط رابط ← يشتري من AliExpress/Temu ← أنت تاخذ عمولة<br>
+      <span style="color:var(--g)">🎯 هدف: 5-10 طلبات/يوم = 3,000-8,000 دج/يوم</span>
     </div>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
-    <button class="btn-g" onclick="ST('products')">🛍️ تصفح المنتجات</button>
-    <button class="btn-o" onclick="ST('agent')">🤖 AI Agent</button>
+    <button class="bg" onclick="go('products')">🛍️ تصفح المنتجات</button>
+    <button class="bo" onclick="go('agent')">🤖 AI Agent</button>
   </div>
 </div>
 
 <!-- PRODUCTS -->
-<div id="T-products" style="display:none">
+<div id="pg-products" class="pg">
   <div class="st">🛍️ المنتجات (12 منتج)</div>
-  <input class="sinp" id="psearch" placeholder="🔍 ابحث عن منتج..." oninput="FP()" dir="rtl" style="text-align:right">
-  <div class="fr" id="cats"></div>
+  <input class="inp" id="psrch" placeholder="🔍 ابحث..." oninput="filterP()" dir="rtl" style="text-align:right">
+  <div class="fr" id="catRow"></div>
   <div id="plist"></div>
 </div>
 
-<!-- AI AGENT -->
-<div id="T-agent" style="display:none">
+<!-- AGENT -->
+<div id="pg-agent" class="pg">
   <div class="cc">
     <div class="st">🤖 بوت فاتح الذكي</div>
-    <div class="fr">
-      <button class="pill" onclick="QP('اقترح منتج ترند للسوق الجزائري مع حساب الربح')">💡 ترند</button>
-      <button class="pill" onclick="QP('اكتب وصف جذاب لمنتج قناع LED بالعربية الدارجة')">✍️ وصف</button>
-      <button class="pill" onclick="QP('كيف أسوق مجاناً على TikTok وFacebook الجزائر؟')">📱 تسويق</button>
-      <button class="pill" onclick="QP('قارن AliExpress وCJ Dropshipping أيهما أفضل للجزائر؟')">⚖️ موردين</button>
-      <button class="pill" onclick="QP('احسب ربح منتج تكلفته 800 دج وأبيعه بـ 2200 دج مع 20% معدل رفض')">💰 أرباح</button>
+    <div class="fr" id="qrow">
+      <button class="pill" onclick="qp('اقترح منتج ترند مربح للسوق الجزائري مع حساب الأرباح')">💡 ترند</button>
+      <button class="pill" onclick="qp('اكتب وصف جذاب بالعربية لمنتج قناع LED للوجه')">✍️ وصف</button>
+      <button class="pill" onclick="qp('كيف أسوق مجاناً على Facebook وTikTok في الجزائر؟')">📱 تسويق</button>
+      <button class="pill" onclick="qp('قارن AliExpress وCJ Dropshipping للسوق الجزائري')">⚖️ موردين</button>
+      <button class="pill" onclick="qp('منتج تكلفته 1000 دج، أبيعه بـ 2500 دج، حسب لي الربح الشهري مع 5 طلبات/يوم')">💰 أرباح</button>
     </div>
     <div class="cm" id="msgs">
-      <div class="msg a"><div class="bbl">🤖 أنا بوت فاتح الذكي، محرك متجرك 24/7!<br><br>أقدر نساعدك في:<br>• البحث على منتجات ترند مربحة<br>• كتابة أوصاف جذابة بالعربية<br>• استراتيجيات التسويق المجاني<br>• مقارنة الموردين وحساب الأرباح<br>• التعامل مع الموردين الجزائريين<br><br>اسألني عن أي شيء 👇</div></div>
+      <div class="msg a"><div class="bb">🤖 أنا بوت فاتح الذكي!<br>اسألني عن:<br>• منتجات ترند مربحة<br>• كتابة أوصاف بالعربية<br>• تسويق مجاني<br>• مقارنة موردين وحساب أرباح 💰</div></div>
     </div>
-    <div id="apiwarn" style="display:none;background:#FF6B6B15;border:1px solid #FF6B6B40;border-radius:8px;padding:10px;margin-bottom:8px;font-size:0.75rem;color:var(--red)">
-      ⚠️ أدخل <b>Claude API Key</b> في ⚙️ الإعدادات لتفعيل AI Agent مجاناً
-    </div>
-    <div class="cir">
-      <input class="cinp" id="cinp" placeholder="اكتب سؤالك..." onkeydown="if(event.key==='Enter')SM()">
-      <button class="btn-g" onclick="SM()" id="sbtn">▶</button>
+    <div id="awarn" class="warn">⚠️ أدخل Gemini API Key في ⚙️ الإعدادات — مجاني 1500 طلب/يوم</div>
+    <div class="ci">
+      <input id="cinp" placeholder="اكتب سؤالك..." onkeydown="if(event.key==='Enter')send()">
+      <button class="bg" id="sbtn" onclick="send()">▶</button>
     </div>
   </div>
 </div>
 
 <!-- SUPPLIERS -->
-<div id="T-suppliers" style="display:none">
+<div id="pg-suppliers" class="pg">
   <div class="st">🏪 الموردين — التسجيل مجاني</div>
-  <div class="card card-gold" style="margin-bottom:14px">
-    <div style="font-weight:800;color:var(--gold);margin-bottom:8px">🇩🇿 الموردين المحليين (الأفضل للجزائر)</div>
-    <div style="font-size:0.78rem;color:var(--t2);line-height:1.9">
-      ✅ توصيل <b style="color:var(--green)">2-4 أيام</b> فقط<br>
-      ✅ دفع عند الاستلام <b style="color:var(--green)">COD</b><br>
-      ✅ بدون جمارك — ثقة أعلى من الزبايين<br><br>
-      <b style="color:var(--gold)">📍 العلمة</b> — أكبر سوق جملة في الجزائر<br>
-      <a href="https://www.facebook.com/search/groups/?q=فروش+بالجملة" target="_blank" style="color:var(--gold)">🔍 Facebook: "فروش بالجملة"</a><br>
-      <a href="https://www.facebook.com/search/groups/?q=دروبشيبينغ+الجزائر" target="_blank" style="color:var(--gold)">🔍 Facebook: "دروبشيبينغ الجزائر"</a>
+  <div class="card card-g">
+    <div style="font-weight:800;color:var(--g);margin-bottom:8px">🇩🇿 موردين جزائريين (الأفضل)</div>
+    <div style="font-size:.78rem;color:var(--t2);line-height:1.9">
+      ✅ توصيل <b style="color:var(--gr)">2-4 أيام</b> — دفع عند الاستلام COD<br>
+      📍 <b style="color:var(--g)">العلمة</b> — أكبر سوق جملة في الجزائر<br>
+      <a href="https://www.facebook.com/search/groups/?q=فروش+بالجملة" target="_blank" style="color:var(--g)">🔍 Facebook: "فروش بالجملة"</a><br>
+      <a href="https://www.facebook.com/search/groups/?q=دروبشيبينغ+الجزائر" target="_blank" style="color:var(--g)">🔍 Facebook: "دروبشيبينغ الجزائر"</a>
     </div>
   </div>
   <div id="suplist"></div>
 </div>
 
 <!-- SETTINGS -->
-<div id="T-settings" style="display:none">
+<div id="pg-settings" class="pg">
   <div class="st">⚙️ إعدادات المتجر</div>
   <div class="card">
-    <div style="font-size:0.78rem;color:var(--t2);font-weight:700;margin-bottom:6px">📱 رقم WhatsApp (للطلبات)</div>
-    <input class="sinp" id="wa-in" placeholder="213770XXXXXX" dir="ltr">
-    <div style="font-size:0.65rem;color:var(--t3);margin-bottom:12px">مثال: 213770123456 (بدون + في البداية)</div>
-    
-    <div style="font-size:0.78rem;color:var(--t2);font-weight:700;margin-bottom:6px">🤖 Gemini API Key (مجاني - AI Agent)</div>
-    <input class="sinp" id="ak-in" type="password" placeholder="AIzaSy..." dir="ltr">
-    <div style="font-size:0.65rem;color:var(--t3);margin-bottom:4px">احصل عليه مجاناً: <a href="https://aistudio.google.com" target="_blank" style="color:var(--gold)">aistudio.google.com</a></div>
-    <div style="font-size:0.65rem;color:var(--t3);margin-bottom:12px">المفتاح يُخزّن على جهازك فقط ولا يُرسل لأحد</div>
-    
-    <div style="font-size:0.78rem;color:var(--t2);font-weight:700;margin-bottom:6px">🏪 اسم المتجر</div>
-    <input class="sinp" id="sn-in" placeholder="سوق فاتح الذكي" dir="rtl" style="text-align:right">
-    
-    <button class="btn-g" onclick="SAVE()" style="width:100%;justify-content:center">💾 حفظ الإعدادات</button>
+    <div style="font-size:.78rem;color:var(--t2);font-weight:700;margin-bottom:5px">📱 رقم WhatsApp</div>
+    <input class="inp" id="waIn" placeholder="213670000000" dir="ltr" style="text-align:left">
+    <div style="font-size:.78rem;color:var(--t2);font-weight:700;margin-bottom:5px;margin-top:4px">🤖 Gemini API Key (مجاني)</div>
+    <input class="inp" id="akIn" type="password" placeholder="AIzaSy..." dir="ltr" style="text-align:left">
+    <div style="font-size:.65rem;color:var(--t3);margin-bottom:10px">
+      احصل عليه مجاناً: <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--g)">aistudio.google.com</a>
+    </div>
+    <div style="font-size:.78rem;color:var(--t2);font-weight:700;margin-bottom:5px">🏪 اسم المتجر</div>
+    <input class="inp" id="snIn" placeholder="سوق فاتح الذكي" dir="rtl" style="text-align:right">
+    <button class="bg" onclick="saveS()" style="width:100%;justify-content:center;margin-top:4px">💾 حفظ الإعدادات</button>
   </div>
-  
   <div class="card" style="background:linear-gradient(135deg,#0d1a0d,#0f200f);border-color:#4CAF5030">
-    <div class="st" style="color:var(--green)">🚀 نشر المتجر مجاناً</div>
-    <div style="font-size:0.78rem;color:var(--t2);line-height:1.9">
-      <b style="color:var(--gold)">GitHub Pages (مجاني - موصى به):</b><br>
-      1. احفظ هذه الصفحة كـ <code style="color:var(--gold)">index.html</code><br>
-      2. ارفعها على GitHub repository<br>
-      3. Settings → Pages → Deploy<br>
-      🔗 رابطك: <b>username.github.io/fateh-store</b><br><br>
-      <b style="color:var(--gold)">Netlify (أسهل - 2 دقيقة):</b><br>
-      اذهب لـ netlify.com وانسحب الملف مباشرة
-    </div>
-    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-      <a href="https://github.com/new" target="_blank" class="btn-o">⬡ GitHub</a>
-      <a href="https://app.netlify.com/drop" target="_blank" class="btn-o">▲ Netlify</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="st" style="color:var(--orange)">📦 شركات الشحن الجزائرية</div>
-    <div style="font-size:0.78rem;color:var(--t2);line-height:1.9">
-      <a href="https://yalidine.app" target="_blank" style="color:var(--gold);font-weight:700">📦 Yalidine</a> — الأسرع والأوسع انتشاراً<br>
-      <a href="https://maystro-delivery.com" target="_blank" style="color:var(--gold);font-weight:700">🚚 Maystro</a> — تغطية 58 ولاية<br>
-      <a href="https://zrexpress.dz" target="_blank" style="color:var(--gold);font-weight:700">⚡ ZR Express</a> — أسعار تنافسية<br>
-      <a href="https://procolis.com" target="_blank" style="color:var(--gold);font-weight:700">📬 Procolis</a> — API للتكامل
+    <div class="st" style="color:var(--gr)">📦 شركات الشحن الجزائرية</div>
+    <div style="font-size:.78rem;color:var(--t2);line-height:2">
+      <a href="https://yalidine.app" target="_blank" style="color:var(--g);font-weight:700">📦 Yalidine</a> — الأسرع والأوسع<br>
+      <a href="https://maystro-delivery.com" target="_blank" style="color:var(--g);font-weight:700">🚚 Maystro</a> — 58 ولاية<br>
+      <a href="https://zrexpress.dz" target="_blank" style="color:var(--g);font-weight:700">⚡ ZR Express</a> — أسعار تنافسية
     </div>
   </div>
 </div>
 
-</div><!-- end content -->
-
 <script>
-// ============================
-// CONFIG
-// ============================
-let CFG = {
-  wa: localStorage.getItem('wa') || '213XXXXXXXXX',
-  ak: localStorage.getItem('ak') || '',
-  sn: localStorage.getItem('sn') || 'سوق فاتح الذكي'
-};
+// ===== CONFIG =====
+var wa = localStorage.getItem('wa') || '';
+var ak = localStorage.getItem('ak') || '';
+var sn = localStorage.getItem('sn') || 'سوق فاتح الذكي';
+var chatH = [];
+var acCat = 'الكل';
 
-// ============================
-// PRODUCTS
-// ============================
-const PRODS = [
-  {id:1,e:'🍳',n:'طقم أدوات مطبخ سيليكون',c:'منزل ومطبخ',t:'local',p:1800,co:900,cur:'دج',sup:'العلمة - جملة',sh:'2-4 أيام',d:'طقم 6 قطع مقاوم للحرارة - ألوان عصرية - هدية مثالية',tr:82},
-  {id:2,e:'💄',n:'مجموعة K-Beauty كورية',c:'جمال وعناية',t:'local',p:2200,co:1000,cur:'دج',sup:'موردين جزائريين',sh:'2-4 أيام',d:'كريم + سيروم + قناع - طلب ضخم من النساء الجزائريات',tr:91},
-  {id:3,e:'📱',n:'حافظة هاتف مع مرآة ومحفظة',c:'إكسسوارات',t:'local',p:900,co:350,cur:'دج',sup:'العلمة - جملة',sh:'2-4 أيام',d:'متوافقة مع معظم الهواتف - عملية وأنيقة',tr:78},
-  {id:4,e:'🏋️',n:'حزام رياضي للخصر',c:'رياضة ولياقة',t:'local',p:1400,co:600,cur:'دج',sup:'موردين جزائريين',sh:'2-4 أيام',d:'نيوبرين عالي الجودة - يشد الخصر ويحمي أثناء الرياضة',tr:85},
-  {id:5,e:'🪴',n:'أواني زرع سيراميك عصرية',c:'منزل وديكور',t:'local',p:1600,co:700,cur:'دج',sup:'العلمة - جملة',sh:'2-4 أيام',d:'3 أحجام بألوان عصرية - ترند الديكور 2026',tr:80},
-  {id:6,e:'🎒',n:'حقيبة ظهر مضادة للسرقة',c:'حقائب وسفر',t:'local',p:3200,co:1500,cur:'دج',sup:'موردين جزائريين',sh:'2-4 أيام',d:'USB شحن + قفل خفي - مثالية للطلاب والمسافرين',tr:87},
-  {id:7,e:'✨',n:'قناع علاج الضوء الأحمر LED',c:'جمال وعناية',t:'intl',p:'$45-80',co:'$15-25',cur:'USD',sup:'AliExpress / CJ',sh:'15-25 يوم',d:'الأعلى طلباً 2026 - علاج الحب والتجاعيد بالضوء',tr:95,url:'https://www.aliexpress.com/wholesale?SearchText=led+face+therapy+mask',cj:'https://app.cjdropshipping.com/product-list.html?keyword=led+face+mask'},
-  {id:8,e:'🎧',n:'سماعات TWS لاسلكية Pro',c:'إلكترونيات',t:'intl',p:'$20-40',co:'$5-12',cur:'USD',sup:'AliExpress / Temu',sh:'15-25 يوم',d:'بلوتوث 5.3 - بطارية 30 ساعة - مع علبة شحن',tr:87,url:'https://www.aliexpress.com/wholesale?SearchText=tws+wireless+earbuds+bluetooth'},
-  {id:9,e:'🦴',n:'مثبت الوضعية الذكي',c:'صحة وعافية',t:'intl',p:'$25-45',co:'$5-12',cur:'USD',sup:'AliExpress / Amazon',sh:'15-25 يوم',d:'مشكلة الجلوس الطويل - طلب كبير من موظفين وطلاب',tr:85,url:'https://www.aliexpress.com/wholesale?SearchText=posture+corrector+back+brace'},
-  {id:10,e:'⛱️',n:'مظلة شاطئ مضادة للرياح',c:'رياضة وترفيه',t:'intl',p:'$30-55',co:'$8-15',cur:'USD',sup:'AliExpress / Amazon',sh:'15-25 يوم',d:'755K impression/أسبوع - موسم الصيف = مبيعات ضخمة',tr:90,url:'https://www.aliexpress.com/wholesale?SearchText=anti+wind+beach+umbrella'},
-  {id:11,e:'🐾',n:'إكسسوارات الحيوانات الأليفة',c:'حيوانات أليفة',t:'intl',p:'$18-35',co:'$3-8',cur:'USD',sup:'AliExpress / CJ',sh:'15-25 يوم',d:'الترند #1 صيف 2026 - 3.4 مليون مشاهدة/أسبوع',tr:98,url:'https://www.aliexpress.com/wholesale?SearchText=personalized+pet+accessories',cj:'https://app.cjdropshipping.com/product-list.html?keyword=pet+accessories'},
-  {id:12,e:'🪄',n:'رف جداري بدون حفر',c:'منزل وديكور',t:'intl',p:'$24-38',co:'$6-10',cur:'USD',sup:'AliExpress / Temu',sh:'15-25 يوم',d:'300% زيادة في البحث - مثالي للمستأجرين',tr:88,url:'https://www.aliexpress.com/wholesale?SearchText=adhesive+floating+wall+shelf'}
+// ===== PRODUCTS DATA =====
+var PRODS = [
+  {id:1,e:'🍳',n:'طقم أدوات مطبخ سيليكون',c:'منزل ومطبخ',t:'L',p:1800,co:900,cur:'دج',sup:'العلمة',sh:'2-4 أيام',d:'طقم 6 قطع مقاوم للحرارة — هدية مثالية',tr:82},
+  {id:2,e:'💄',n:'مجموعة K-Beauty كورية',c:'جمال وعناية',t:'L',p:2200,co:1000,cur:'دج',sup:'موردين جزائريين',sh:'2-4 أيام',d:'كريم + سيروم + قناع — طلب ضخم من النساء',tr:91},
+  {id:3,e:'📱',n:'حافظة هاتف مع مرآة',c:'إكسسوارات',t:'L',p:900,co:350,cur:'دج',sup:'العلمة',sh:'2-4 أيام',d:'متوافقة مع معظم الهواتف — أنيقة وعملية',tr:78},
+  {id:4,e:'🏋️',n:'حزام رياضي للخصر',c:'رياضة ولياقة',t:'L',p:1400,co:600,cur:'دج',sup:'موردين جزائريين',sh:'2-4 أيام',d:'نيوبرين — يشد الخصر أثناء الرياضة',tr:85},
+  {id:5,e:'🪴',n:'أواني زرع سيراميك',c:'منزل وديكور',t:'L',p:1600,co:700,cur:'دج',sup:'العلمة',sh:'2-4 أيام',d:'3 أحجام بألوان عصرية — ترند الديكور 2026',tr:80},
+  {id:6,e:'🎒',n:'حقيبة ظهر مضادة للسرقة',c:'حقائب وسفر',t:'L',p:3200,co:1500,cur:'دج',sup:'موردين جزائريين',sh:'2-4 أيام',d:'USB شحن + قفل خفي — مثالية للطلاب',tr:87},
+  {id:7,e:'✨',n:'قناع علاج الضوء الأحمر LED',c:'جمال وعناية',t:'I',p:'$45-80',co:'$15-25',cur:'USD',sup:'AliExpress / CJ',sh:'15-25 يوم',d:'الأعلى طلباً 2026 — علاج الحب والتجاعيد',tr:95,url:'https://www.aliexpress.com/wholesale?SearchText=led+face+therapy+mask',cj:'https://app.cjdropshipping.com/product-list.html?keyword=led+face+mask'},
+  {id:8,e:'🎧',n:'سماعات TWS لاسلكية',c:'إلكترونيات',t:'I',p:'$20-40',co:'$5-12',cur:'USD',sup:'AliExpress / Temu',sh:'15-25 يوم',d:'بلوتوث 5.3 — بطارية 30 ساعة',tr:87,url:'https://www.aliexpress.com/wholesale?SearchText=tws+wireless+earbuds'},
+  {id:9,e:'🦴',n:'مثبت الوضعية الذكي',c:'صحة وعافية',t:'I',p:'$25-45',co:'$5-12',cur:'USD',sup:'AliExpress / Amazon',sh:'15-25 يوم',d:'مشكلة الجلوس الطويل — طلب كبير',tr:85,url:'https://www.aliexpress.com/wholesale?SearchText=posture+corrector'},
+  {id:10,e:'⛱️',n:'مظلة شاطئ مضادة للرياح',c:'رياضة وترفيه',t:'I',p:'$30-55',co:'$8-15',cur:'USD',sup:'AliExpress',sh:'15-25 يوم',d:'755K impression/أسبوع — صيف = مبيعات',tr:90,url:'https://www.aliexpress.com/wholesale?SearchText=anti+wind+beach+umbrella'},
+  {id:11,e:'🐾',n:'إكسسوارات الحيوانات الأليفة',c:'حيوانات أليفة',t:'I',p:'$18-35',co:'$3-8',cur:'USD',sup:'AliExpress / CJ',sh:'15-25 يوم',d:'ترند #1 صيف 2026 — 3.4M مشاهدة/أسبوع',tr:98,url:'https://www.aliexpress.com/wholesale?SearchText=personalized+pet+accessories'},
+  {id:12,e:'🪄',n:'رف جداري بدون حفر',c:'منزل وديكور',t:'I',p:'$24-38',co:'$6-10',cur:'USD',sup:'AliExpress / Temu',sh:'15-25 يوم',d:'300% زيادة في البحث — للمستأجرين',tr:88,url:'https://www.aliexpress.com/wholesale?SearchText=adhesive+floating+wall+shelf'}
 ];
 
-const SUPS = [
-  {n:'AliExpress Affiliate',e:'🛒',col:'#FF6600',com:'حتى 9%',reg:'https://portals.aliexpress.com/newPortal/signup.htm',d:'أكبر منصة دولية - ملايين المنتجات',wh:'🇨🇳 الصين'},
-  {n:'CJ Dropshipping',e:'📦',col:'#4CAF50',com:'2% + هامش حر',reg:'https://app.cjdropshipping.com/register.html',d:'مستودعات في الصين/أمريكا/أوروبا - شحن أسرع',wh:'🇨🇳🇺🇸🇪🇺'},
-  {n:'Temu Affiliate',e:'🎯',col:'#FF4500',com:'حتى 20%',reg:'https://www.temu.com/affiliate',d:'أعلى عمولة - أسعار منخفضة جداً',wh:'🇨🇳🇺🇸'},
-  {n:'Amazon Associates',e:'📬',col:'#FF9900',com:'حتى 10%',reg:'https://affiliate-program.amazon.com',d:'شحن سريع - ثقة عالمية',wh:'🌍 عالمي'},
-  {n:'Jumia Africa',e:'🌍',col:'#F68B1E',com:'حتى 11%',reg:'https://affiliate.jumia.com',d:'الأفضل للسوق الأفريقي',wh:'🌍 أفريقيا'},
-  {n:'Noon العربي',e:'☀️',col:'#FFEE00',com:'حتى 10%',reg:'https://affiliate.noon.com',d:'الأفضل للسوق العربي والخليج',wh:'🇦🇪 الإمارات'},
-  {n:'SHEIN Affiliate',e:'👗',col:'#FF69B4',com:'10-20%',reg:'https://affiliate.shein.com',d:'أزياء ومودة - طلب ضخم من النساء',wh:'🇨🇳🌍'}
+var SUPS = [
+  {n:'AliExpress Affiliate',e:'🛒',col:'#FF6600',com:'حتى 9%',reg:'https://portals.aliexpress.com',d:'أكبر منصة — ملايين المنتجات'},
+  {n:'CJ Dropshipping',e:'📦',col:'#4CAF50',com:'2% + هامش',reg:'https://app.cjdropshipping.com/register.html',d:'مستودعات عالمية — شحن أسرع'},
+  {n:'Temu Affiliate',e:'🎯',col:'#FF4500',com:'حتى 20%',reg:'https://www.temu.com/affiliate',d:'أعلى عمولة — أسعار منخفضة'},
+  {n:'Amazon Associates',e:'📬',col:'#FF9900',com:'حتى 10%',reg:'https://affiliate-program.amazon.com',d:'ثقة عالمية — شحن سريع'},
+  {n:'Jumia Africa',e:'🌍',col:'#F68B1E',com:'حتى 11%',reg:'https://affiliate.jumia.com',d:'الأفضل للسوق الأفريقي'},
+  {n:'Noon العربي',e:'☀️',col:'#E8B800',com:'حتى 10%',reg:'https://affiliate.noon.com',d:'الأفضل للسوق العربي'},
+  {n:'SHEIN Affiliate',e:'👗',col:'#FF69B4',com:'10-20%',reg:'https://affiliate.shein.com',d:'أزياء — طلب ضخم من النساء'}
 ];
 
-// ============================
-// INIT
-// ============================
-let acCat='الكل', sq='', chatH=[];
+// ===== NAVIGATION =====
+function go(tab) {
+  document.querySelectorAll('.pg').forEach(function(p){ p.classList.remove('on'); });
+  document.querySelectorAll('.nb').forEach(function(b){ b.classList.remove('on'); });
+  var pg = document.getElementById('pg-'+tab);
+  if(pg) pg.classList.add('on');
+  var tabs = ['home','products','agent','suppliers','settings'];
+  var idx = tabs.indexOf(tab);
+  var btns = document.querySelectorAll('.nb');
+  if(idx >= 0 && btns[idx]) btns[idx].classList.add('on');
+}
 
-function init(){
-  renderTop3();
-  renderCats();
+// ===== SETTINGS =====
+function loadS() {
+  document.getElementById('waIn').value = wa;
+  document.getElementById('akIn').value = ak;
+  document.getElementById('snIn').value = sn;
+}
+function saveS() {
+  wa = document.getElementById('waIn').value.trim();
+  ak = document.getElementById('akIn').value.trim();
+  sn = document.getElementById('snIn').value.trim() || 'سوق فاتح الذكي';
+  localStorage.setItem('wa', wa);
+  localStorage.setItem('ak', ak);
+  localStorage.setItem('sn', sn);
+  document.getElementById('logoTxt').textContent = '⚡ ' + sn;
+  document.getElementById('awarn').style.display = ak ? 'none' : 'block';
+  alert('✅ تم الحفظ!');
+}
+
+// ===== PRODUCTS =====
+function marg(p) {
+  if(p.t === 'L') return Math.round(((p.p - p.co) / p.p) * 100) + '%';
+  return '60-75%';
+}
+
+function renderTop3() {
+  var top = PRODS.slice().sort(function(a,b){return b.tr-a.tr;}).slice(0,3);
+  document.getElementById('top3').innerHTML = top.map(function(p){
+    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)">'
+      +'<div style="display:flex;align-items:center;gap:8px"><span style="font-size:1.4rem">'+p.e+'</span>'
+      +'<div><div style="font-size:.8rem;font-weight:700">'+p.n+'</div>'
+      +'<div style="font-size:.65rem;color:var(--g)">'+(p.t==='L'?'🇩🇿 محلي':'🌍 دولي')+' • هامش '+marg(p)+'</div></div></div>'
+      +'<div style="font-size:.8rem;color:var(--gr);font-weight:800">'+p.p+' '+p.cur+'</div></div>';
+  }).join('');
+}
+
+function renderCats() {
+  var cats = ['الكل','محلي 🇩🇿','دولي 🌍'];
+  PRODS.forEach(function(p){ if(cats.indexOf(p.c) === -1) cats.push(p.c); });
+  document.getElementById('catRow').innerHTML = cats.map(function(c){
+    return '<button class="pill'+(c==='الكل'?' on':'')+'" onclick="setCat(\''+c+'\')">'+c+'</button>';
+  }).join('');
+}
+
+function setCat(c) {
+  acCat = c;
+  document.querySelectorAll('#catRow .pill').forEach(function(b){
+    b.classList.toggle('on', b.textContent === c);
+  });
   renderProds();
-  renderSups();
-  loadCFG();
-  checkKey();
 }
 
-function loadCFG(){
-  document.getElementById('wa-in').value=CFG.wa;
-  document.getElementById('ak-in').value=CFG.ak;
-  document.getElementById('sn-in').value=CFG.sn;
-}
+function filterP() { renderProds(); }
 
-function SAVE(){
-  CFG.wa=document.getElementById('wa-in').value.trim()||'213XXXXXXXXX';
-  CFG.ak=document.getElementById('ak-in').value.trim();
-  CFG.sn=document.getElementById('sn-in').value.trim()||'سوق فاتح الذكي';
-  localStorage.setItem('wa',CFG.wa);
-  localStorage.setItem('ak',CFG.ak);
-  localStorage.setItem('sn',CFG.sn);
-  document.getElementById('logo-title').textContent='⚡ '+CFG.sn;
-  checkKey();
-  alert('✅ تم حفظ الإعدادات!');
-}
-
-function checkKey(){
-  document.getElementById('apiwarn').style.display=CFG.ak?'none':'block';
-}
-
-// ============================
-// NAVIGATION
-// ============================
-function ST(tab){
-  document.querySelectorAll('[id^="T-"]').forEach(e=>e.style.display='none');
-  document.getElementById('T-'+tab).style.display='block';
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
-  const tabs=['home','products','agent','suppliers','settings'];
-  const i=tabs.index
+function renderProds() {
+  var sq = document.getElementById('psrch').value.toLowerCase();
+  var f = PRODS.filter(function(p){
+    if(acCat === 'محلي 🇩🇿' && p.t !== 'L') return false;
+    if(acCat === 'دولي 🌍' && p.t !== 'I') return false;
+    if(acCat !== 'الكل' && acCat !== 'محلي 🇩🇿' && acCat !== 'دولي 🌍' && p.c !== acCat) return false;
+    if(sq && p.n.toLowerCase().indexOf(sq) === -1 && p.d.toLowerCase().indexOf(sq) === -1) return false;
+    return true;
+  });
+  var el = document.getElementById('plist');
+  if(!f.length){ el.innerHTML='<div style="text-align:center;color:var(--t3);padding:30px">لا توجد نتائج</div>'; return; }
+  el.innerHTML = f.map(function(p){
+    var btns = p.t === 'L'
+      ? '<button class="bw" onclick="oWA('+p.id+');event.stopPropagation()">📲 اطلب واتساب</button>'
+        +'<button class="bo" onclick="sh('+p.id+');event.stopPropagation()">📤 شارك</button>'
+      : '<a href="'+p.url+'" target="_blank" class="bg" onclick="event.stopPropagation()">🔗 AliExpress</a>'
+        +(p.cj ? '<a href="'+p.cj+'" target="_blank" class="bo" onclick="event.stopPropagation()">📦 CJ</a>' : '');
+    return '<div class="pc" id="pc'+p.id+'" onclick="tp('+p.id+')">'
+      +'<div style="display:flex;gap:10px;align-items:flex-start">'
+      +'<span style="font-size:2.2rem;line-height:1">'+p.e+'</span>'
+      +'<div style="flex:1">'
+      +'<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px">'
+      +'<span style="font-size:.88rem;font-weight:800">'+p.n+'</span>'
+      +'<span class="'+(p.t==='L'?'pl':'pi')+'">'+(p.t==='L'?'🇩🇿 محلي':'🌍 دولي')+'</span></div>'
+  
