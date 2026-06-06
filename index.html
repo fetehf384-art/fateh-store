@@ -2,106 +2,85 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>سوق فاتح الذكي</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#c9a227;--gl:#e8b830;--bg:#09090f;--c:#111118;--bd:#252515;--tx:#e8dcc8;--t2:#999;--t3:#555;--gr:#4CAF50;--rd:#FF6B6B;--wa:#25D366}
-body{background:var(--bg);color:var(--tx);font-family:'Cairo',sans-serif;direction:rtl;min-height:100vh}
-/* HEADER & NAV */
-#hdr{position:sticky;top:0;z-index:99;background:linear-gradient(90deg,#0a0800,#1a1200,#0a0800);border-bottom:2px solid var(--g);padding:12px 15px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,#f0c040,#c9a227);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.badge{background:var(--g);color:#0a0800;font-size:0.55rem;padding:2px 7px;border-radius:20px;font-weight:900}
-#nav{display:flex;background:#0d0d18;border-bottom:1px solid var(--bd);overflow-x:auto;position:sticky;top:57px;z-index:98}
-.nb{flex-shrink:0;padding:11px 14px;border:none;background:none;color:var(--t3);border-bottom:2px solid transparent;font-weight:600;cursor:pointer;font-family:'Cairo'}
-.nb.on{color:var(--g);border-bottom-color:var(--g);font-weight:800}
-.pg{display:none;padding:12px 14px;max-width:480px;margin:0 auto}
-.pg.on{display:block}
-.card{background:var(--c);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:10px}
-.inp{width:100%;background:#151520;border:1px solid var(--bd);border-radius:8px;padding:10px 12px;color:var(--tx);margin-bottom:8px}
-.bg{background:linear-gradient(135deg,var(--g),var(--gl));color:#0a0800;border:none;border-radius:8px;padding:9px 15px;font-weight:800;cursor:pointer}
-.pc{background:var(--c);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer}
-.pe{display:none;border-top:1px solid var(--bd);margin-top:10px;padding-top:10px}
-.pe.on{display:block}
-.warn{background:#FF6B6B15;border:1px solid #FF6B6B40;padding:10px;border-radius:8px;color:var(--rd);display:none}
+    :root{--g:#c9a227;--gl:#e8b830;--bg:#09090f;--c:#111118;--bd:#252515;--tx:#e8dcc8;--t3:#555;--gr:#4CAF50;--rd:#FF6B6B}
+    body{background:var(--bg);color:var(--tx);font-family:'Cairo',sans-serif;margin:0}
+    #hdr{padding:15px;background:#1a1200;border-bottom:2px solid var(--g);display:flex;justify-content:space-between;align-items:center}
+    #nav{display:flex;background:#0d0d18;overflow-x:auto;padding:5px}
+    .nb{padding:10px;color:var(--t3);cursor:pointer;font-weight:700}
+    .nb.on{color:var(--g);border-bottom:2px solid var(--g)}
+    .pg{display:none;padding:15px}
+    .pg.on{display:block}
+    .card{background:var(--c);border:1px solid var(--bd);padding:15px;border-radius:10px;margin-bottom:10px}
+    .inp{width:100%;padding:10px;background:#151520;border:1px solid var(--bd);color:white;border-radius:5px;margin-bottom:10px}
+    .bg{padding:10px 20px;background:var(--g);border:none;border-radius:5px;font-weight:bold;cursor:pointer}
+    .msg{margin-bottom:10px;padding:10px;border-radius:10px}
+    .u{background:#c9a22720;text-align:right}
+    .a{background:#151520;text-align:left}
 </style>
 </head>
 <body>
 
 <div id="hdr">
-  <div class="logo" id="logoTxt">⚡ سوق فاتح الذكي</div>
-  <div class="badge">PRO AGENT</div>
+    <div style="font-weight:900;color:var(--g)">⚡ سوق فاتح الذكي</div>
 </div>
 
 <div id="nav">
-  <button class="nb on" onclick="go('home')">🏠 الرئيسية</button>
-  <button class="nb" onclick="go('products')">🛍️ المنتجات</button>
-  <button class="nb" onclick="go('agent')">🤖 AI Agent</button>
-  <button class="nb" onclick="go('settings')">⚙️ الإعدادات</button>
+    <div class="nb on" onclick="go('home')">الرئيسية</div>
+    <div class="nb" onclick="go('products')">المنتجات</div>
+    <div class="nb" onclick="go('agent')">AI Agent</div>
+    <div class="nb" onclick="go('settings')">الإعدادات</div>
 </div>
 
-<div id="pg-home" class="pg on">
-  <div style="text-align:center;padding:20px">
-    <div style="font-size:2.4rem;font-weight:900;color:var(--g)">0 دج</div>
-    <p>أرباح شهر يونيو</p>
-  </div>
-  <div class="card" id="top3"></div>
-</div>
+<div id="pg-home" class="pg on"><div class="card">أهلاً بك في متجرك الذكي! ابدأ التصفح.</div></div>
 
-<div id="pg-products" class="pg">
-  <input class="inp" id="psrch" placeholder="🔍 ابحث..." oninput="renderProds()">
-  <div id="plist"></div>
-</div>
+<div id="pg-products" class="pg"><div id="plist"></div></div>
 
 <div id="pg-agent" class="pg">
-  <div id="msgs" style="height:300px;overflow-y:auto;background:#151520;padding:10px;border-radius:8px"></div>
-  <div id="awarn" class="warn">⚠️ أدخل API Key في الإعدادات</div>
-  <div style="display:flex;gap:5px;margin-top:10px">
+    <div id="msgs" style="height:300px;overflow-y:auto;background:#09090f;padding:10px;border:1px solid var(--bd);margin-bottom:10px"></div>
     <input class="inp" id="cinp" placeholder="اسأل البوت...">
     <button class="bg" onclick="send()">إرسال</button>
-  </div>
 </div>
 
 <div id="pg-settings" class="pg">
-  <input class="inp" id="akIn" type="password" placeholder="Gemini API Key">
-  <button class="bg" onclick="saveS()">حفظ الإعدادات</button>
+    <input class="inp" id="akIn" type="password" placeholder="أدخل Gemini API Key هنا">
+    <button class="bg" onclick="saveS()">حفظ الإعدادات</button>
 </div>
 
 <script>
-var ak = localStorage.getItem('ak') || '';
-var PRODS = [{id:1,e:'🍳',n:'طقم مطبخ',d:'طقم سيليكون مقاوم للحرارة',p:1800,tr:82},{id:2,e:'💄',n:'مجموعة تجميل',d:'كريم + سيروم كوري',p:2200,tr:91}];
-
-function go(tab) {
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
-  document.getElementById('pg-'+tab).classList.add('on');
+function go(id){
+    document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+    document.querySelectorAll('.nb').forEach(n=>n.classList.remove('on'));
+    document.getElementById('pg-'+id).classList.add('on');
+    event.target.classList.add('on');
 }
 
-function renderProds() {
-  var el = document.getElementById('plist');
-  el.innerHTML = PRODS.map(p=>`
-    <div class="pc" onclick="tp(${p.id})">
-      <strong>${p.e} ${p.n}</strong>
-      <div class="pe" id="pe${p.id}">${p.d} - السعر: ${p.p}</div>
-    </div>`).join('');
+function saveS(){
+    localStorage.setItem('ak', document.getElementById('akIn').value);
+    alert('✅ تم حفظ المفتاح');
 }
 
-function tp(id) { document.getElementById('pe'+id).classList.toggle('on'); }
-
-function saveS() {
-  localStorage.setItem('ak', document.getElementById('akIn').value);
-  alert('✅ تم الحفظ');
+async function send(){
+    let ak = localStorage.getItem('ak');
+    let q = document.getElementById('cinp').value;
+    if(!ak){alert('يرجى وضع المفتاح في الإعدادات'); return;}
+    document.getElementById('msgs').innerHTML += `<div class="msg u">أنت: ${q}</div>`;
+    
+    let res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${ak}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({contents: [{parts: [{text: q}]}]})
+    });
+    let data = await res.json();
+    let reply = data.candidates[0].content.parts[0].text;
+    document.getElementById('msgs').innerHTML += `<div class="msg a">البوت: ${reply}</div>`;
+    document.getElementById('cinp').value = '';
 }
 
-async function send() {
-  var val = document.getElementById('cinp').value;
-  if(!ak) { document.getElementById('awarn').style.display='block'; return; }
-  document.getElementById('msgs').innerHTML += `<div>أنت: ${val}</div>`;
-  document.getElementById('cinp').value = '';
-}
-
-window.onload = () => { renderProds(); document.getElementById('akIn').value = ak; };
+window.onload = () => { document.getElementById('akIn').value = localStorage.getItem('ak') || ''; }
 </script>
 </body>
-    </html>
-  
+</html>
